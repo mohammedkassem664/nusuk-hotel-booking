@@ -1,26 +1,51 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>mohammed kassem | حجز فنادق مكة</title>
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-<meta name="description" content="حجز فنادق مكة المكرمة - تصفح الفنادق وقارن بينها وتواصل عبر واتساب">
+<meta
+  name="theme-color"
+  content="#94151d"
+>
+
+<meta
+  name="description"
+  content="NUSUK HOTEL BOOKING - حجز فنادق مكة والمدينة"
+>
+
+<title>NUSUK HOTEL BOOKING</title>
 
 <style>
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
 :root{
-  --main:#9b0000;
-  --main2:#c40000;
-  --dark:#171717;
-  --gold:#c89b3c;
-  --light:#f7f7f7;
-  --white:#fff;
-  --gray:#777;
-  --border:#e9e9e9;
-  --shadow:0 8px 25px rgba(0,0,0,.08);
+  --red:#94151d;
+  --red-dark:#650b11;
+  --gold:#c8a35b;
+  --cream:#f8f5ef;
+  --white:#ffffff;
+  --black:#171717;
+  --text:#252525;
+  --muted:#777;
+  --border:#e6ded2;
+  --green:#20b85a;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
   --radius:18px;
 }
+
+
+/* =====================================================
+   RESET
+===================================================== */
 
 *{
   box-sizing:border-box;
@@ -34,8 +59,8 @@ html{
 
 body{
   font-family:Tahoma,Arial,sans-serif;
-  background:#fafafa;
-  color:#222;
+  background:#fff;
+  color:var(--text);
   line-height:1.7;
 }
 
@@ -49,32 +74,36 @@ button{
   cursor:pointer;
 }
 
-img{
-  max-width:100%;
-  display:block;
+a{
+  text-decoration:none;
+  color:inherit;
 }
 
-.container{
-  width:min(1200px,94%);
-  margin:auto;
-}
 
-/* ================= HEADER ================= */
+/* =====================================================
+   HEADER
+===================================================== */
 
-header{
+.header{
   position:sticky;
   top:0;
   z-index:1000;
   background:rgba(255,255,255,.97);
+  backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border);
-  box-shadow:0 3px 15px rgba(0,0,0,.05);
+  box-shadow:0 3px 15px rgba(0,0,0,.04);
 }
 
-.nav{
-  min-height:75px;
+.header-inner{
+  max-width:1250px;
+  min-height:78px;
+  margin:auto;
+  padding:8px 18px;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   gap:20px;
 }
 
@@ -82,47 +111,72 @@ header{
   display:flex;
   align-items:center;
   gap:10px;
-  flex-shrink:0;
+  min-width:230px;
 }
 
 .brand img{
-  width:55px;
-  height:55px;
+  width:53px;
+  height:53px;
   object-fit:contain;
   border-radius:12px;
 }
 
 .brand-text{
-  font-weight:800;
-  font-size:17px;
-  color:var(--main);
-  white-space:nowrap;
+  line-height:1.2;
 }
 
-.nav-links{
+.brand-name{
+  color:var(--red);
+  font-size:15px;
+  font-weight:900;
+}
+
+.brand-sub{
+  color:#888;
+  font-size:11px;
+  margin-top:3px;
+}
+
+.nav{
   display:flex;
   align-items:center;
-  gap:6px;
+  gap:5px;
 }
 
-.nav-links button{
+.nav button{
   border:0;
   background:transparent;
-  color:#333;
-  padding:10px 12px;
+  padding:10px 13px;
   border-radius:10px;
-  white-space:nowrap;
-  font-size:14px;
-  transition:.2s;
+  font-weight:700;
+  color:#444;
 }
 
-.nav-links button:hover,
-.nav-links button.active{
-  background:#fff0f0;
-  color:var(--main);
+.nav button:hover,
+.nav button.active{
+  background:var(--cream);
+  color:var(--red);
 }
 
-/* ================= PAGES ================= */
+.menu-btn{
+  display:none;
+
+  width:45px;
+  height:45px;
+
+  border:0;
+  border-radius:12px;
+
+  background:var(--red);
+  color:#fff;
+
+  font-size:22px;
+}
+
+
+/* =====================================================
+   PAGES
+===================================================== */
 
 .page{
   display:none;
@@ -132,621 +186,1229 @@ header{
   display:block;
 }
 
-/* ================= HERO ================= */
+
+/* =====================================================
+   HOME HERO
+===================================================== */
 
 .hero{
   position:relative;
   min-height:560px;
+
   display:flex;
   align-items:center;
+  justify-content:center;
+
   overflow:hidden;
+  background:#170c0d;
+}
+
+.hero-image{
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero-image img{
+  width:100%;
+  height:100%;
+
+  display:block;
+
+  object-fit:cover;
+  object-position:center center;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+
   background:
-    linear-gradient(90deg,rgba(0,0,0,.76),rgba(0,0,0,.35)),
-    url("file_0000000035dc820caee9fa52357bb9d4.png") center/cover no-repeat;
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.74),
+      rgba(0,0,0,.27),
+      rgba(0,0,0,.70)
+    );
 }
 
 .hero-content{
   position:relative;
   z-index:2;
-  color:white;
-  max-width:720px;
-  padding:70px 0;
+
+  width:100%;
+  max-width:1050px;
+
+  padding:55px 20px;
+
+  text-align:center;
+  color:#fff;
+}
+
+
+/* =====================================================
+   LOGO CENTER
+===================================================== */
+
+.hero-logo-wrap{
+  width:125px;
+  height:125px;
+
+  margin:0 auto 23px;
+
+  padding:10px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(255,255,255,.97);
+
+  border-radius:28px;
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.30),
+    0 0 0 1px rgba(255,255,255,.45);
 }
 
 .hero-logo{
-  width:150px;
-  height:150px;
+  width:100%;
+  height:100%;
+
   object-fit:contain;
-  margin-bottom:20px;
-  background:#fff;
-  border-radius:22px;
-  padding:8px;
+
+  border-radius:18px;
 }
 
 .hero h1{
-  font-size:46px;
-  line-height:1.25;
+  font-size:clamp(30px,5vw,58px);
+
+  line-height:1.2;
+
   margin-bottom:15px;
+
+  font-weight:900;
+
+  text-shadow:
+    0 3px 20px rgba(0,0,0,.4);
 }
 
 .hero h1 span{
-  color:#ffd875;
+  color:#e5c77d;
 }
 
 .hero p{
-  font-size:18px;
-  color:#eee;
-  margin-bottom:25px;
-  max-width:650px;
+  max-width:720px;
+
+  margin:0 auto 28px;
+
+  color:#f3f3f3;
+
+  font-size:17px;
 }
 
-.hero-buttons{
+.hero-actions{
   display:flex;
-  gap:12px;
+  justify-content:center;
   flex-wrap:wrap;
+  gap:12px;
 }
 
-/* ================= BUTTONS ================= */
+
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 .btn{
   border:0;
-  border-radius:12px;
-  padding:11px 18px;
-  font-size:14px;
-  font-weight:700;
+  border-radius:13px;
+
+  padding:13px 21px;
+
+  font-weight:800;
+
   transition:.2s;
-  text-decoration:none;
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
-  gap:6px;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
 }
 
 .btn-primary{
-  background:var(--main);
-  color:white;
-}
+  background:var(--red);
+  color:#fff;
 
-.btn-primary:hover{
-  background:#780000;
-}
-
-.btn-outline{
-  background:white;
-  color:var(--main);
-  border:1px solid var(--main);
-}
-
-.btn-dark{
-  background:#222;
-  color:white;
+  box-shadow:
+    0 8px 25px rgba(148,21,29,.30);
 }
 
 .btn-gold{
   background:var(--gold);
-  color:white;
+  color:#fff;
 }
 
-.btn-light{
-  background:#f3f3f3;
-  color:#333;
+.btn-white{
+  background:#fff;
+  color:var(--red);
 }
 
-/* ================= SECTION ================= */
+.btn-outline{
+  background:#fff;
+  color:var(--red);
 
-.section{
-  padding:45px 0;
+  border:1px solid var(--border);
 }
 
-.section-title{
+.btn-danger{
+  background:#fff0f0;
+  color:#9a141c;
+}
+
+
+/* =====================================================
+   HOME FUNCTIONS
+===================================================== */
+
+.home-functions{
+  max-width:1150px;
+
+  margin:auto;
+
+  padding:42px 18px 32px;
+}
+
+.section-heading{
   text-align:center;
-  margin-bottom:30px;
+  margin-bottom:25px;
 }
 
-.section-title h2{
-  font-size:30px;
-  margin-bottom:7px;
+.section-heading h2{
+  color:var(--red);
+  font-size:25px;
 }
 
-.section-title p{
-  color:var(--gray);
+.section-heading p{
+  color:var(--muted);
+  font-size:14px;
+  margin-top:4px;
 }
-
-/* ================= FUNCTIONS ================= */
 
 .function-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:18px;
+  gap:15px;
 }
 
 .function-card{
+  width:100%;
+
   background:#fff;
-  border-radius:var(--radius);
+
+  border:1px solid var(--border);
+  border-radius:18px;
+
   padding:24px 16px;
+
   text-align:center;
+
   box-shadow:var(--shadow);
-  border:1px solid #eee;
+
   transition:.2s;
-  cursor:pointer;
 }
 
 .function-card:hover{
   transform:translateY(-4px);
+  border-color:#d8c29a;
 }
 
 .function-icon{
-  width:65px;
-  height:65px;
+  width:58px;
+  height:58px;
+
   margin:0 auto 12px;
-  border-radius:20px;
+
+  border-radius:17px;
+
+  background:var(--cream);
+
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#fff0f0;
-  color:var(--main);
-  font-size:30px;
+
+  font-size:27px;
 }
 
 .function-card h3{
-  font-size:18px;
+  font-size:16px;
   margin-bottom:5px;
 }
 
 .function-card p{
-  font-size:13px;
-  color:var(--gray);
+  color:var(--muted);
+  font-size:12px;
 }
 
-/* ================= STEPS ================= */
 
-.steps{
+/* =====================================================
+   GUIDE
+===================================================== */
+
+.guide{
+  background:#faf8f4;
+
+  border-top:1px solid var(--border);
+
+  padding:42px 18px 50px;
+}
+
+.guide-inner{
+  max-width:1050px;
+  margin:auto;
+}
+
+.guide-title{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.guide-title h2{
+  color:var(--red);
+  font-size:24px;
+}
+
+.guide-title p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.guide-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:18px;
+  gap:13px;
 }
 
-.step{
+.guide-step{
   background:#fff;
-  padding:22px;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  text-align:center;
+
   border:1px solid var(--border);
+  border-radius:16px;
+
+  padding:18px;
 }
 
 .step-number{
-  width:42px;
-  height:42px;
-  background:var(--main);
-  color:#fff;
+  width:35px;
+  height:35px;
+
   border-radius:50%;
+
+  background:var(--red);
+  color:#fff;
+
   display:flex;
   align-items:center;
   justify-content:center;
-  margin:0 auto 12px;
-  font-weight:bold;
+
+  font-weight:900;
+
+  margin-bottom:10px;
 }
 
-/* ================= HOTEL FILTER ================= */
+.guide-step h3{
+  font-size:15px;
+  margin-bottom:5px;
+}
 
-.filter-box{
+.guide-step p{
+  color:var(--muted);
+  font-size:12px;
+}
+
+
+/* =====================================================
+   PAGE COVER
+===================================================== */
+
+.page-cover{
+  position:relative;
+
+  width:100%;
+
+  background:#111;
+
+  overflow:hidden;
+}
+
+/*
+  مهم:
+  الصورة هنا طبيعية الارتفاع
+  ومش مستخدمين background-size:cover
+  علشان الصورة ما تتقصش.
+*/
+
+.page-cover-image{
+  width:100%;
+  height:auto;
+
+  display:block;
+}
+
+.page-cover-overlay{
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.67),
+      rgba(0,0,0,.15),
+      rgba(0,0,0,.67)
+    );
+}
+
+.page-cover-content{
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  color:#fff;
+
+  padding:20px;
+}
+
+.page-cover-content h1{
+  font-size:clamp(28px,5vw,48px);
+
+  text-shadow:
+    0 3px 15px rgba(0,0,0,.55);
+}
+
+.page-cover-content p{
+  font-size:14px;
+  margin-top:6px;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+  max-width:1250px;
+
+  margin:auto;
+
+  padding:28px 18px;
+}
+
+.page-title{
+  text-align:center;
+  margin-bottom:22px;
+}
+
+.page-title h2{
+  color:var(--red);
+  font-size:27px;
+}
+
+.page-title p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+
+/* =====================================================
+   FILTERS
+===================================================== */
+
+.filters{
   background:#fff;
-  padding:18px;
-  border-radius:var(--radius);
+
+  border:1px solid var(--border);
+  border-radius:17px;
+
+  padding:13px;
+
   box-shadow:var(--shadow);
-  margin-bottom:25px;
+
+  margin-bottom:22px;
 }
 
 .filter-grid{
   display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr;
-  gap:12px;
+
+  grid-template-columns:
+    minmax(200px,2fr)
+    repeat(5,minmax(115px,1fr));
+
+  gap:8px;
 }
 
-.field{
-  display:flex;
-  flex-direction:column;
-  gap:5px;
-}
-
-.field label{
-  font-size:12px;
-  color:#666;
-}
-
-.field input,
-.field select{
+.filter-control,
+.search-wrap input{
   width:100%;
-  padding:12px;
-  border:1px solid #ddd;
+
+  min-height:43px;
+
+  border:1px solid var(--border);
+
   border-radius:10px;
-  outline:none;
+
   background:#fff;
+
+  padding:9px 11px;
+
+  outline:none;
+
+  color:#333;
+
+  font-size:12px;
 }
 
-.field input:focus,
-.field select:focus{
-  border-color:var(--main);
+.filter-control:focus,
+.search-wrap input:focus{
+  border-color:var(--gold);
 }
 
-/* ================= HOTELS ================= */
+.search-wrap{
+  position:relative;
+}
+
+.suggestions{
+  position:absolute;
+
+  top:48px;
+  right:0;
+  left:0;
+
+  z-index:500;
+
+  background:#fff;
+
+  border:1px solid var(--border);
+
+  border-radius:12px;
+
+  box-shadow:var(--shadow);
+
+  overflow:hidden;
+
+  display:none;
+}
+
+.suggestions div{
+  padding:10px;
+
+  cursor:pointer;
+
+  font-size:12px;
+}
+
+.suggestions div:hover{
+  background:var(--cream);
+}
+
+.filter-actions{
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  margin-top:9px;
+}
+
+.result-count{
+  font-size:12px;
+  color:var(--muted);
+}
+
+
+/* =====================================================
+   HOTELS GRID
+===================================================== */
 
 .hotels-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:16px;
 }
 
 .hotel-card{
   background:#fff;
-  border-radius:var(--radius);
-  overflow:hidden;
-  box-shadow:var(--shadow);
+
   border:1px solid var(--border);
+
+  border-radius:17px;
+
+  overflow:hidden;
+
+  box-shadow:var(--shadow);
+
   display:flex;
   flex-direction:column;
 }
 
-.hotel-photo{
-  height:200px;
-  background:linear-gradient(135deg,#eee,#ddd);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#777;
-  position:relative;
-  overflow:hidden;
-}
+.hotel-top{
+  min-height:125px;
 
-.hotel-photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+  background:
+    linear-gradient(
+      135deg,
+      #94151d,
+      #650b11
+    );
 
-.no-image{
-  font-size:40px;
-  opacity:.45;
-}
-
-.hotel-badge{
-  position:absolute;
-  top:10px;
-  right:10px;
-  background:var(--main);
   color:#fff;
-  padding:5px 9px;
+
+  padding:18px;
+
+  position:relative;
+}
+
+.hotel-stars{
+  color:#e4c26f;
+
+  letter-spacing:1px;
+
+  font-size:13px;
+
+  margin-bottom:7px;
+}
+
+.hotel-stars.no-rating{
+  color:#ddd;
+}
+
+.hotel-name{
+  font-size:18px;
+
+  font-weight:900;
+
+  line-height:1.4;
+}
+
+.hotel-city{
+  position:absolute;
+
+  left:13px;
+  top:13px;
+
+  background:rgba(255,255,255,.16);
+
+  padding:4px 8px;
+
   border-radius:8px;
-  font-size:11px;
-  font-weight:bold;
+
+  font-size:10px;
 }
 
 .hotel-body{
   padding:16px;
-}
 
-.hotel-body h3{
-  font-size:20px;
-  margin-bottom:5px;
+  flex:1;
 }
 
 .hotel-location{
-  color:#777;
-  font-size:13px;
-  margin-bottom:8px;
+  font-size:12px;
+
+  color:#555;
+
+  margin-bottom:9px;
 }
 
-.stars{
-  color:#d09a22;
-  font-size:16px;
-  letter-spacing:1px;
+.hotel-meta{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:6px;
+
+  margin-bottom:12px;
 }
 
 .meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin:12px 0;
-}
+  background:#f7f4ee;
 
-.meta span{
-  background:#f5f5f5;
-  border-radius:7px;
-  padding:5px 8px;
-  font-size:11px;
-}
+  border-radius:8px;
 
-.hotel-description{
-  font-size:13px;
+  padding:5px 7px;
+
+  font-size:10px;
+
   color:#555;
-  margin-bottom:12px;
 }
 
 .hotel-actions{
   display:grid;
+
   grid-template-columns:1fr 1fr;
-  gap:8px;
-}
 
-.hotel-actions .btn{
-  font-size:12px;
-  padding:10px 5px;
-}
-
-.compare-check{
-  margin-top:10px;
-  display:flex;
-  align-items:center;
   gap:7px;
-  font-size:12px;
-  color:#555;
+
+  margin-top:auto;
 }
 
-/* ================= DETAILS ================= */
+.hotel-actions button{
+  border:0;
 
-.details-box{
+  border-radius:9px;
+
+  padding:9px 5px;
+
+  font-size:11px;
+
+  font-weight:800;
+}
+
+.details-btn{
+  background:var(--red);
+  color:#fff;
+}
+
+.compare-btn{
+  background:#f2eee6;
+  color:#6b501f;
+}
+
+.compare-btn.selected{
+  background:var(--gold);
+  color:#fff;
+}
+
+.no-results{
+  padding:45px 20px;
+
+  text-align:center;
+
+  color:var(--muted);
+
+  border:1px dashed var(--border);
+
+  border-radius:17px;
+}
+
+
+/* =====================================================
+   DETAILS
+===================================================== */
+
+.back-row{
+  max-width:1250px;
+
+  margin:auto;
+
+  padding:15px 18px 0;
+}
+
+.back-btn{
+  border:0;
+
+  background:#f7f3eb;
+
+  color:var(--red);
+
+  border-radius:10px;
+
+  padding:9px 14px;
+
+  font-weight:800;
+
+  font-size:12px;
+}
+
+.detail-box{
+  max-width:950px;
+
+  margin:auto;
+
   background:#fff;
-  border-radius:var(--radius);
+
+  border:1px solid var(--border);
+
+  border-radius:20px;
+
   box-shadow:var(--shadow);
+
+  overflow:hidden;
+}
+
+.detail-head{
+  background:
+    linear-gradient(
+      135deg,
+      #94151d,
+      #650b11
+    );
+
+  color:#fff;
+
+  padding:28px;
+}
+
+.detail-head h1{
+  font-size:28px;
+}
+
+.detail-head p{
+  opacity:.9;
+  font-size:13px;
+}
+
+.detail-content{
   padding:25px;
 }
 
-.details-header{
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  align-items:flex-start;
+.detail-grid{
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:12px;
+
   margin-bottom:20px;
 }
 
-.details-header h2{
-  font-size:30px;
-}
-
-.details-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-
-.info-card{
-  background:#fafafa;
+.detail-item{
   border:1px solid var(--border);
-  border-radius:14px;
-  padding:18px;
+
+  border-radius:13px;
+
+  padding:13px;
+
+  background:#fffdfa;
 }
 
-.info-card h3{
-  margin-bottom:10px;
+.detail-item strong{
+  display:block;
+
+  color:var(--red);
+
+  font-size:12px;
+
+  margin-bottom:3px;
+}
+
+.detail-item span{
+  font-size:13px;
 }
 
 .amenities{
   display:flex;
+
   flex-wrap:wrap;
+
   gap:8px;
+
+  margin:10px 0 22px;
 }
 
 .amenity{
-  background:#fff;
-  border:1px solid #ddd;
-  border-radius:8px;
+  background:#f7f3eb;
+
+  border-radius:9px;
+
   padding:7px 10px;
-  font-size:12px;
+
+  font-size:11px;
 }
 
-/* ================= MAPS ================= */
+
+/* =====================================================
+   MAPS
+===================================================== */
 
 .maps-list{
   display:grid;
+
   grid-template-columns:repeat(2,1fr);
-  gap:16px;
+
+  gap:14px;
 }
 
-.map-item{
+.map-card{
   background:#fff;
+
   border:1px solid var(--border);
-  border-radius:14px;
+
+  border-radius:17px;
+
   padding:18px;
+
   box-shadow:var(--shadow);
 }
 
-.map-item h3{
-  margin-bottom:5px;
+.map-card h3{
+  color:var(--red);
+
+  font-size:17px;
 }
 
-.map-item p{
-  color:#777;
-  font-size:13px;
-  margin-bottom:12px;
+.map-card p{
+  font-size:12px;
+
+  color:var(--muted);
+
+  margin:5px 0 13px;
 }
 
-/* ================= COMPARE ================= */
+.map-card button{
+  width:100%;
+}
+
+
+/* =====================================================
+   COMPARISON
+===================================================== */
 
 .compare-table-wrap{
   overflow-x:auto;
+
   background:#fff;
-  border-radius:var(--radius);
+
+  border:1px solid var(--border);
+
+  border-radius:17px;
+
   box-shadow:var(--shadow);
 }
 
 .compare-table{
   width:100%;
+
   border-collapse:collapse;
-  min-width:650px;
+
+  min-width:700px;
 }
 
 .compare-table th,
 .compare-table td{
-  padding:13px;
-  border-bottom:1px solid #eee;
+  padding:14px;
+
+  border-bottom:1px solid var(--border);
+
   text-align:center;
+
+  font-size:12px;
 }
 
 .compare-table th{
-  background:#fafafa;
+  background:#faf7f1;
+
+  color:var(--red);
 }
 
-.compare-bar{
-  position:fixed;
-  bottom:0;
-  right:0;
-  left:0;
-  background:#fff;
-  box-shadow:0 -5px 20px rgba(0,0,0,.12);
-  padding:10px;
-  z-index:999;
-  display:none;
+.compare-table tr:last-child td{
+  border-bottom:0;
 }
 
-.compare-bar-inner{
-  width:min(1200px,94%);
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
+.compare-empty{
+  text-align:center;
+
+  padding:55px 20px;
+
+  border:1px dashed var(--border);
+
+  border-radius:17px;
+
+  color:var(--muted);
 }
 
-.compare-count{
-  font-size:13px;
-}
 
-/* ================= RATING ================= */
+/* =====================================================
+   RATINGS
+===================================================== */
 
 .rating-grid{
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+
+  grid-template-columns:repeat(3,1fr);
+
   gap:15px;
 }
 
 .rating-card{
   background:#fff;
-  border-radius:15px;
-  padding:20px;
-  text-align:center;
-  box-shadow:var(--shadow);
+
   border:1px solid var(--border);
+
+  border-radius:17px;
+
+  padding:20px;
+
+  box-shadow:var(--shadow);
 }
 
-.rating-number{
-  font-size:30px;
+.rating-card h3{
+  color:var(--red);
+}
+
+.rating-card .big-stars{
   color:var(--gold);
-  font-weight:bold;
+
+  font-size:23px;
+
+  margin:5px 0;
 }
 
-/* ================= FOOTER ================= */
+.rating-card ul{
+  list-style:none;
 
-footer{
-  background:#171717;
-  color:#fff;
-  margin-top:40px;
-  padding:40px 0 20px;
-}
-
-.footer-grid{
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  gap:30px;
-}
-
-.footer-brand{
-  font-size:22px;
-  font-weight:bold;
-  color:#fff;
-  margin-bottom:10px;
-}
-
-footer p{
-  color:#bbb;
-  font-size:13px;
-}
-
-.footer-links{
-  display:flex;
-  flex-direction:column;
-  gap:7px;
-}
-
-.footer-links button{
-  border:0;
-  background:none;
-  color:#bbb;
-  text-align:right;
-}
-
-.footer-links button:hover{
-  color:#fff;
-}
-
-.copyright{
-  text-align:center;
-  border-top:1px solid #333;
-  margin-top:25px;
-  padding-top:18px;
-  color:#888;
   font-size:12px;
+
+  color:#666;
 }
 
-/* ================= FLOATING BUTTONS ================= */
+.rating-card li{
+  padding:4px 0;
+}
 
-.whatsapp{
+
+/* =====================================================
+   FLOATING WHATSAPP
+===================================================== */
+
+.floating-whatsapp{
   position:fixed;
-  left:18px;
-  bottom:18px;
+
+  right:16px;
+  bottom:82px;
+
   width:55px;
   height:55px;
+
   border-radius:50%;
-  background:#25D366;
+
+  background:var(--green);
+
   color:#fff;
+
   display:flex;
+
   align-items:center;
   justify-content:center;
-  text-decoration:none;
-  font-size:25px;
-  box-shadow:0 5px 20px rgba(0,0,0,.2);
-  z-index:998;
+
+  z-index:1500;
+
+  box-shadow:
+    0 8px 28px rgba(0,0,0,.25);
+
+  transition:.2s;
 }
+
+.floating-whatsapp:hover{
+  transform:scale(1.08);
+}
+
+.floating-whatsapp-icon{
+  width:29px;
+  height:29px;
+
+  display:block;
+}
+
+
+/* =====================================================
+   COMPARE BAR
+===================================================== */
+
+.compare-bar{
+  position:fixed;
+
+  bottom:15px;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  width:min(650px,calc(100% - 130px));
+
+  background:#fff;
+
+  border:1px solid var(--border);
+
+  border-radius:15px;
+
+  box-shadow:
+    0 10px 40px rgba(0,0,0,.18);
+
+  padding:10px;
+
+  z-index:1400;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
+}
+
+.compare-bar.show{
+  display:flex;
+}
+
+.compare-bar-text{
+  font-size:11px;
+
+  color:#555;
+}
+
+.compare-bar-actions{
+  display:flex;
+
+  gap:6px;
+}
+
+.compare-bar button{
+  border:0;
+
+  border-radius:9px;
+
+  padding:8px 11px;
+
+  font-size:10px;
+
+  font-weight:800;
+}
+
+.compare-open{
+  background:var(--red);
+
+  color:#fff;
+}
+
+.compare-clear{
+  background:#f3eee6;
+
+  color:#765c2b;
+}
+
+
+/* =====================================================
+   TOP BUTTON
+===================================================== */
 
 .top-btn{
   position:fixed;
-  right:18px;
+
+  left:15px;
   bottom:18px;
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  background:var(--main);
-  color:#fff;
+
+  width:42px;
+  height:42px;
+
   border:0;
-  display:none;
-  z-index:998;
-  font-size:20px;
-}
 
-/* ================= TOAST ================= */
+  border-radius:50%;
 
-.toast{
-  position:fixed;
-  top:90px;
-  left:50%;
-  transform:translateX(-50%) translateY(-20px);
-  background:#222;
+  background:var(--red);
+
   color:#fff;
-  padding:12px 20px;
+
+  display:none;
+
+  z-index:1300;
+
+  box-shadow:
+    0 7px 25px rgba(0,0,0,.2);
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+  background:#171717;
+
+  color:#eee;
+
+  margin-top:35px;
+
+  padding:30px 18px;
+}
+
+.footer-inner{
+  max-width:1100px;
+
+  margin:auto;
+
+  text-align:center;
+}
+
+.footer-logo{
+  width:60px;
+  height:60px;
+
+  object-fit:contain;
+
+  background:#fff;
+
+  padding:5px;
+
+  border-radius:13px;
+
+  margin-bottom:10px;
+}
+
+.footer h3{
+  color:#e5c77d;
+
+  font-size:16px;
+}
+
+.footer p{
+  color:#aaa;
+
+  font-size:11px;
+
+  margin-top:5px;
+}
+
+.footer-name{
+  margin-top:13px;
+
+  color:#fff;
+
+  font-weight:800;
+}
+
+.whatsapp-footer{
+  display:inline-block;
+
+  margin-top:13px;
+
+  background:#159447;
+
+  color:#fff;
+
+  padding:9px 17px;
+
   border-radius:10px;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
-  z-index:2000;
-  font-size:13px;
+
+  font-size:12px;
+
+  font-weight:800;
 }
 
-.toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
-}
 
-/* ================= RESPONSIVE ================= */
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 @media(max-width:1000px){
 
@@ -754,198 +1416,41 @@ footer p{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .hotels-grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:16px;
-  }
-
-  .steps{
+  .guide-grid{
     grid-template-columns:repeat(2,1fr);
   }
 
   .filter-grid{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .search-wrap{
+    grid-column:1/-1;
+  }
+
+  .hotels-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
   }
 
   .rating-grid{
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(2,1fr);
   }
+
 }
+
 
 @media(max-width:760px){
 
-  .nav{
-    flex-direction:column;
-    align-items:stretch;
-    gap:5px;
-    padding:8px 12px;
+  .header-inner{
+    min-height:68px;
   }
 
   .brand{
-    justify-content:center;
+    min-width:auto;
   }
-
-  .nav-links{
-    width:100%;
-    overflow-x:auto;
-    flex-wrap:nowrap;
-    justify-content:flex-start;
-    padding-bottom:4px;
-    scrollbar-width:none;
-  }
-
-  .nav-links::-webkit-scrollbar{
-    display:none;
-  }
-
-  .nav-links button{
-    flex-shrink:0;
-  }
-
-  .hero{
-    min-height:500px;
-  }
-
-  .hero-content{
-    padding:50px 0;
-    text-align:center;
-  }
-
-  .hero-logo{
-    margin:0 auto 18px;
-  }
-
-  .hero h1{
-    font-size:32px;
-  }
-
-  .hero p{
-    font-size:15px;
-  }
-
-  .hero-buttons{
-    justify-content:center;
-  }
-
-  .details-grid{
-    grid-template-columns:1fr;
-  }
-
-  .maps-list{
-    grid-template-columns:1fr;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr;
-  }
-}
-
-@media(max-width:620px){
-
-  .section{
-    padding:35px 0;
-  }
-
-  .section-title h2{
-    font-size:24px;
-  }
-
-  /* الوظائف جنب بعض */
-  .function-grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-  }
-
-  .function-card{
-    padding:20px 10px;
-  }
-
-  .function-icon{
-    width:55px;
-    height:55px;
-    font-size:25px;
-    border-radius:17px;
-  }
-
-  .function-card h3{
-    font-size:15px;
-  }
-
-  .function-card p{
-    font-size:12px;
-    line-height:1.5;
-  }
-
-  /* الفنادق جنب بعض */
-  .hotels-grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-  }
-
-  .hotel-body{
-    padding:12px;
-  }
-
-  .hotel-body h3{
-    font-size:16px;
-    line-height:1.4;
-  }
-
-  .hotel-photo{
-    height:150px;
-  }
-
-  .hotel-actions{
-    grid-template-columns:1fr;
-  }
-
-  .hotel-actions .btn{
-    font-size:11px;
-    padding:9px 4px;
-  }
-
-  .meta{
-    gap:5px;
-  }
-
-  .meta span{
-    font-size:10px;
-    padding:4px 6px;
-  }
-
-  .hotel-description{
-    font-size:11px;
-  }
-
-  .stars{
-    font-size:13px;
-  }
-
-  .filter-grid{
-    grid-template-columns:1fr;
-  }
-
-  .rating-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .details-header{
-    flex-direction:column;
-  }
-
-  .details-header h2{
-    font-size:24px;
-  }
-
-  .compare-bar-inner{
-    flex-direction:column;
-  }
-}
-
-@media(max-width:400px){
 
   .brand-text{
-    font-size:15px;
+    display:none;
   }
 
   .brand img{
@@ -953,1564 +1458,3251 @@ footer p{
     height:48px;
   }
 
-  .hero h1{
-    font-size:28px;
+  .menu-btn{
+    display:block;
   }
 
-  .hotel-photo{
-    height:130px;
+  .nav{
+    position:absolute;
+
+    top:68px;
+
+    right:10px;
+    left:10px;
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    border-radius:15px;
+
+    box-shadow:var(--shadow);
+
+    display:none;
+
+    flex-direction:column;
+
+    padding:8px;
   }
 
-  .hotel-body h3{
+  .nav.open{
+    display:flex;
+  }
+
+  .nav button{
+    width:100%;
+
+    text-align:right;
+  }
+
+  .hero{
+    min-height:520px;
+  }
+
+  .hero-logo-wrap{
+    width:100px;
+    height:100px;
+  }
+
+  .hero p{
     font-size:14px;
   }
 
+  .filter-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .search-wrap{
+    grid-column:1/-1;
+  }
+
+  .hotels-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+
+    gap:8px;
+  }
+
+  .hotel-top{
+    min-height:105px;
+
+    padding:10px;
+  }
+
+  .hotel-name{
+    font-size:12px;
+  }
+
+  .hotel-city{
+    font-size:8px;
+
+    padding:3px 5px;
+  }
+
+  .hotel-stars{
+    font-size:9px;
+  }
+
+  .hotel-body{
+    padding:9px;
+  }
+
   .hotel-location{
-    font-size:10px;
+    font-size:9px;
   }
 
-  .hotel-description{
-    font-size:10px;
+  .meta{
+    font-size:8px;
+
+    padding:3px 4px;
   }
 
-  .hotel-actions .btn{
-    font-size:10px;
+  .hotel-actions{
+    grid-template-columns:1fr;
   }
+
+  .hotel-actions button{
+    font-size:9px;
+
+    padding:7px 3px;
+  }
+
+  .maps-list{
+    grid-template-columns:1fr;
+  }
+
+  .detail-grid{
+    grid-template-columns:1fr;
+  }
+
+  .rating-grid{
+    grid-template-columns:1fr;
+  }
+
+  /*
+    واتساب فوق شريط المقارنة
+  */
+
+  .floating-whatsapp{
+    right:13px;
+    bottom:82px;
+
+    width:50px;
+    height:50px;
+  }
+
+  .floating-whatsapp-icon{
+    width:27px;
+    height:27px;
+  }
+
+  .compare-bar{
+    width:calc(100% - 110px);
+    left:45%;
+  }
+
 }
+
+
+@media(max-width:430px){
+
+  .hero{
+    min-height:500px;
+  }
+
+  .hero-content{
+    padding:35px 14px;
+  }
+
+  .hero h1{
+    font-size:29px;
+  }
+
+  .hero-actions{
+    flex-direction:column;
+  }
+
+  .hero-actions .btn{
+    width:100%;
+  }
+
+  .home-functions{
+    padding-top:30px;
+  }
+
+  .function-grid{
+    gap:9px;
+  }
+
+  .function-card{
+    padding:16px 8px;
+  }
+
+  .function-icon{
+    width:48px;
+    height:48px;
+
+    font-size:22px;
+  }
+
+  .function-card h3{
+    font-size:13px;
+  }
+
+  .function-card p{
+    font-size:9px;
+  }
+
+  .guide-grid{
+    grid-template-columns:1fr;
+  }
+
+  .filter-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .hotels-grid{
+    gap:6px;
+  }
+
+  .hotel-top{
+    min-height:95px;
+  }
+
+  .hotel-name{
+    font-size:10px;
+  }
+
+  .hotel-location{
+    font-size:8px;
+  }
+
+  .hotel-actions button{
+    font-size:8px;
+  }
+
+  .compare-bar{
+    bottom:8px;
+  }
+
+}
+
+
+/* =====================================================
+   VERY SMALL SCREENS
+===================================================== */
+
+@media(max-width:350px){
+
+  .hotels-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .floating-whatsapp{
+    right:10px;
+  }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<!-- ================= HEADER ================= -->
 
-<header>
-  <div class="container nav">
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+  <div class="header-inner">
 
     <div class="brand">
-      <img src="IMG-20260828-WA0029.jpg" alt="NUSUK HOTEL BOOKING">
-      <div class="brand-text">mohammed kassem</div>
+
+      <img
+        src="IMG-20260828-WA0029.jpg"
+        alt="NUSUK HOTEL BOOKING"
+      >
+
+      <div class="brand-text">
+
+        <div class="brand-name">
+          NUSUK HOTEL BOOKING
+        </div>
+
+        <div class="brand-sub">
+          حجز فنادق مكة والمدينة
+        </div>
+
+      </div>
+
     </div>
 
-    <nav class="nav-links">
-      <button class="active" onclick="showPage('home',this)">الرئيسية</button>
-      <button onclick="showPage('hotels',this)">الفنادق</button>
-      <button onclick="showPage('maps',this)">مواقع الفنادق</button>
-      <button onclick="showPage('compare',this)">المقارنة</button>
-      <button onclick="showPage('rating',this)">التصنيف</button>
+
+    <nav class="nav" id="mainNav">
+
+      <button onclick="go('home')">
+        الرئيسية
+      </button>
+
+      <button onclick="go('hotels')">
+        الفنادق
+      </button>
+
+      <button onclick="go('maps')">
+        مواقع الفنادق
+      </button>
+
+      <button onclick="go('compare')">
+        مقارنة الفنادق
+      </button>
+
+      <button onclick="go('ratings')">
+        التصنيف
+      </button>
+
     </nav>
 
+
+    <button
+      class="menu-btn"
+      onclick="toggleMenu()"
+    >
+      ☰
+    </button>
+
   </div>
+
 </header>
 
-<!-- ================= HOME ================= -->
+
+<!-- =====================================================
+     HOME
+===================================================== -->
 
 <main id="home" class="page active">
 
-<section class="hero">
-  <div class="container hero-content">
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-image">
+
+      <img
+        src="file_0000000035dc820caee9fa52357bb9d4.png"
+        alt="NUSUK HOTEL BOOKING"
+      >
+
+    </div>
+
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="hero-content">
+
+
+      <!-- الشعار في المنتصف -->
+
+      <div class="hero-logo-wrap">
+
+        <img
+          class="hero-logo"
+          src="IMG-20260828-WA0029.jpg"
+          alt="شعار نسك"
+        >
+
+      </div>
+
+
+      <h1>
+
+        احجز فندقك في
+
+        <span>
+          مكة والمدينة
+        </span>
+
+      </h1>
+
+
+      <p>
+
+        استعرض الفنادق وشوف الموقع والمسافة والمميزات،
+        وقارن بين الفنادق قبل التواصل للحجز.
+
+      </p>
+
+
+      <div class="hero-actions">
+
+        <button
+          class="btn btn-primary"
+          onclick="go('hotels')"
+        >
+          🏨 استعرض الفنادق
+        </button>
+
+
+        <button
+          class="btn btn-gold"
+          onclick="go('maps')"
+        >
+          📍 مواقع الفنادق
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =================================================
+       وظائف الموقع - مرة واحدة فقط
+  ================================================== -->
+
+  <section class="home-functions">
+
+    <div class="section-heading">
+
+      <h2>
+        كل أدوات الحجز في مكان واحد
+      </h2>
+
+      <p>
+        اختار الخدمة اللي محتاجها
+      </p>
+
+    </div>
+
+
+    <div class="function-grid">
+
+
+      <button
+        class="function-card"
+        onclick="go('hotels')"
+      >
+
+        <div class="function-icon">
+          🏨
+        </div>
+
+        <h3>
+          الفنادق
+        </h3>
+
+        <p>
+          ابحث واستعرض الفنادق والتفاصيل والمميزات
+        </p>
+
+      </button>
+
+
+      <button
+        class="function-card"
+        onclick="go('maps')"
+      >
+
+        <div class="function-icon">
+          📍
+        </div>
+
+        <h3>
+          مواقع الفنادق
+        </h3>
+
+        <p>
+          اعرف موقع الفندق وافتحه على Google Maps
+        </p>
+
+      </button>
+
+
+      <button
+        class="function-card"
+        onclick="go('compare')"
+      >
+
+        <div class="function-icon">
+          ⚖️
+        </div>
+
+        <h3>
+          مقارنة الفنادق
+        </h3>
+
+        <p>
+          اختار حتى 3 فنادق وقارن بينهم
+        </p>
+
+      </button>
+
+
+      <button
+        class="function-card"
+        onclick="go('ratings')"
+      >
+
+        <div class="function-icon">
+          ⭐
+        </div>
+
+        <h3>
+          التصنيف
+        </h3>
+
+        <p>
+          استعرض الفنادق حسب فئة النجوم
+        </p>
+
+      </button>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =================================================
+       دليل الاستخدام - آخر حاجة
+  ================================================== -->
+
+  <section class="guide">
+
+    <div class="guide-inner">
+
+
+      <div class="guide-title">
+
+        <h2>
+          📖 دليل استخدام الموقع
+        </h2>
+
+        <p>
+          طريقة استخدام الموقع في خطوات بسيطة
+        </p>
+
+      </div>
+
+
+      <div class="guide-grid">
+
+
+        <div class="guide-step">
+
+          <div class="step-number">
+            1
+          </div>
+
+          <h3>
+            اختار الفنادق
+          </h3>
+
+          <p>
+            ادخل على قسم الفنادق واستخدم البحث والفلاتر للوصول للفندق المناسب.
+          </p>
+
+        </div>
+
+
+        <div class="guide-step">
+
+          <div class="step-number">
+            2
+          </div>
+
+          <h3>
+            شوف التفاصيل
+          </h3>
+
+          <p>
+            افتح تفاصيل الفندق لمعرفة الموقع والمسافة والنجوم والغرف والمميزات.
+          </p>
+
+        </div>
+
+
+        <div class="guide-step">
+
+          <div class="step-number">
+            3
+          </div>
+
+          <h3>
+            قارن
+          </h3>
+
+          <p>
+            تقدر تختار حتى 3 فنادق وتقارن بينهم في صفحة واحدة.
+          </p>
+
+        </div>
+
+
+        <div class="guide-step">
+
+          <div class="step-number">
+            4
+          </div>
+
+          <h3>
+            تواصل للحجز
+          </h3>
+
+          <p>
+            اضغط واتساب لفتح رسالة جاهزة وإرسال استفسار الحجز.
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<!-- =====================================================
+     HOTELS
+===================================================== -->
+
+<main id="hotels" class="page">
+
+
+  <div class="page-cover">
 
     <img
-      class="hero-logo"
+      class="page-cover-image"
+      src="file_0000000035dc820caee9fa52357bb9d4.png"
+      alt="فنادق مكة"
+    >
+
+    <div class="page-cover-overlay"></div>
+
+    <div class="page-cover-content">
+
+      <h1>
+        🏨 الفنادق
+      </h1>
+
+      <p>
+        اختار الفندق المناسب وشوف تفاصيله
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="container">
+
+
+    <div class="page-title">
+
+      <h2>
+        فنادق مكة
+      </h2>
+
+      <p>
+        استخدم البحث والفلاتر للوصول للفندق المناسب
+      </p>
+
+    </div>
+
+
+    <div class="filters">
+
+
+      <div class="filter-grid">
+
+
+        <div class="search-wrap">
+
+          <input
+            id="hotelSearch"
+            type="text"
+            placeholder="ابحث باسم الفندق..."
+            autocomplete="off"
+            oninput="handleHotelSearch()"
+            onfocus="showHotelSuggestions()"
+          >
+
+          <div
+            class="suggestions"
+            id="suggestions"
+          ></div>
+
+        </div>
+
+
+        <select
+          id="locationFilter"
+          class="filter-control"
+          onchange="renderHotels()"
+        >
+
+          <option value="">
+            كل المواقع
+          </option>
+
+        </select>
+
+
+        <select
+          id="starsFilter"
+          class="filter-control"
+          onchange="renderHotels()"
+        >
+
+          <option value="">
+            كل التصنيفات
+          </option>
+
+          <option value="5">
+            5 نجوم
+          </option>
+
+          <option value="4">
+            4 نجوم
+          </option>
+
+          <option value="3">
+            3 نجوم
+          </option>
+
+          <option value="1">
+            نجمة واحدة
+          </option>
+
+          <option value="0">
+            غير محدد
+          </option>
+
+        </select>
+
+
+        <select
+          id="distanceFilter"
+          class="filter-control"
+          onchange="renderHotels()"
+        >
+
+          <option value="">
+            كل المسافات
+          </option>
+
+          <option value="1">
+            حتى 1 كم
+          </option>
+
+          <option value="2">
+            حتى 2 كم
+          </option>
+
+          <option value="3">
+            حتى 3 كم
+          </option>
+
+          <option value="5">
+            حتى 5 كم
+          </option>
+
+        </select>
+
+
+        <select
+          id="transportFilter"
+          class="filter-control"
+          onchange="renderHotels()"
+        >
+
+          <option value="">
+            المواصلات
+          </option>
+
+          <option value="yes">
+            يوجد مواصلات
+          </option>
+
+          <option value="no">
+            بدون مواصلات
+          </option>
+
+        </select>
+
+
+        <select
+          id="roomFilter"
+          class="filter-control"
+          onchange="renderHotels()"
+        >
+
+          <option value="">
+            كل أنواع الغرف
+          </option>
+
+          <option value="double">
+            ثنائية
+          </option>
+
+          <option value="triple">
+            ثلاثية
+          </option>
+
+          <option value="quad">
+            رباعية
+          </option>
+
+          <option value="family">
+            عائلية
+          </option>
+
+          <option value="suite">
+            جناح
+          </option>
+
+        </select>
+
+
+      </div>
+
+
+      <div class="filter-actions">
+
+        <div
+          class="result-count"
+          id="resultCount"
+        ></div>
+
+
+        <button
+          class="btn btn-outline"
+          onclick="clearFilters()"
+        >
+          مسح الفلاتر
+        </button>
+
+      </div>
+
+
+    </div>
+
+
+    <div
+      id="hotelsGrid"
+      class="hotels-grid"
+    ></div>
+
+
+  </div>
+
+</main>
+
+
+<!-- =====================================================
+     DETAILS
+===================================================== -->
+
+<main id="details" class="page">
+
+
+  <div class="back-row">
+
+    <button
+      class="back-btn"
+      onclick="goBack()"
+    >
+      ← رجوع
+    </button>
+
+  </div>
+
+
+  <div class="container">
+
+    <div id="detailsContent"></div>
+
+  </div>
+
+
+</main>
+
+
+<!-- =====================================================
+     MAPS
+===================================================== -->
+
+<main id="maps" class="page">
+
+
+  <div
+    class="page-title"
+    style="padding-top:30px;"
+  >
+
+    <h2>
+      📍 مواقع الفنادق
+    </h2>
+
+    <p>
+      افتح موقع الفندق مباشرة على Google Maps
+    </p>
+
+  </div>
+
+
+  <div class="container">
+
+    <div
+      id="mapsList"
+      class="maps-list"
+    ></div>
+
+  </div>
+
+
+</main>
+
+
+<!-- =====================================================
+     COMPARE
+===================================================== -->
+
+<main id="compare" class="page">
+
+
+  <div
+    class="page-title"
+    style="padding-top:30px;"
+  >
+
+    <h2>
+      ⚖️ مقارنة الفنادق
+    </h2>
+
+    <p>
+      اختار حتى 3 فنادق للمقارنة
+    </p>
+
+  </div>
+
+
+  <div class="container">
+
+    <div id="compareContent"></div>
+
+  </div>
+
+
+</main>
+
+
+<!-- =====================================================
+     RATINGS
+===================================================== -->
+
+<main id="ratings" class="page">
+
+
+  <div
+    class="page-title"
+    style="padding-top:30px;"
+  >
+
+    <h2>
+      ⭐ تصنيف الفنادق
+    </h2>
+
+    <p>
+      استعرض الفنادق حسب فئة النجوم
+    </p>
+
+  </div>
+
+
+  <div class="container">
+
+    <div id="ratingsContent"></div>
+
+  </div>
+
+
+</main>
+
+
+<!-- =====================================================
+     FLOATING WHATSAPP
+===================================================== -->
+
+<a
+  class="floating-whatsapp"
+  href="https://wa.me/201032321748"
+  target="_blank"
+  aria-label="تواصل معنا عبر واتساب"
+>
+
+  <!-- أيقونة واتساب SVG بدون الحاجة لصورة خارجية -->
+
+  <svg
+    class="floating-whatsapp-icon"
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+
+    <path
+      d="M16 3C8.82 3 3 8.82 3 16c0 2.29.6 4.44 1.65 6.33L3 29l6.86-1.6A12.94 12.94 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3Z"
+      fill="white"
+    />
+
+    <path
+      d="M21.55 18.77c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.5 1.69.64.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35Z"
+      fill="#20b85a"
+    />
+
+  </svg>
+
+</a>
+
+
+<!-- =====================================================
+     COMPARE BAR
+===================================================== -->
+
+<div
+  class="compare-bar"
+  id="compareBar"
+>
+
+  <div
+    class="compare-bar-text"
+    id="compareBarText"
+  >
+    لم تختار فنادق للمقارنة
+  </div>
+
+
+  <div class="compare-bar-actions">
+
+    <button
+      class="compare-clear"
+      onclick="clearCompare()"
+    >
+      مسح
+    </button>
+
+
+    <button
+      class="compare-open"
+      onclick="openComparison()"
+    >
+      مقارنة
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     TOP BUTTON
+===================================================== -->
+
+<button
+  class="top-btn"
+  id="topBtn"
+  onclick="window.scrollTo({top:0,behavior:'smooth'})"
+>
+  ↑
+</button>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+
+  <div class="footer-inner">
+
+
+    <img
+      class="footer-logo"
       src="IMG-20260828-WA0029.jpg"
       alt="NUSUK HOTEL BOOKING"
     >
 
-    <h1>
-      احجز فندقك في <span>مكة المكرمة</span>
-    </h1>
+
+    <h3>
+      NUSUK HOTEL BOOKING
+    </h3>
+
 
     <p>
-      تصفح مجموعة من الفنادق، اعرف موقع الفندق ومميزاته،
-      قارن بين الفنادق ثم تواصل مباشرة عبر واتساب.
+      حجز فنادق مكة والمدينة
     </p>
 
-    <div class="hero-buttons">
-      <button class="btn btn-primary" onclick="showPage('hotels')">
-        🏨 تصفح الفنادق
-      </button>
 
-      <a
-        class="btn btn-gold"
-        href="https://wa.me/201032321748"
-        target="_blank"
-      >
-        💬 تواصل واتساب
-      </a>
+    <div class="footer-name">
+      mohammed kassem
     </div>
 
-  </div>
-</section>
 
-<section class="section">
+    <a
+      class="whatsapp-footer"
+      href="https://wa.me/201032321748"
+      target="_blank"
+    >
+      💬 تواصل عبر واتساب
+    </a>
 
-  <div class="container">
 
-    <div class="section-title">
-      <h2>كل اللي تحتاجه في مكان واحد</h2>
-      <p>اختار الوظيفة اللي عايز تستخدمها</p>
-    </div>
+    <p>
+      01032321748
+    </p>
 
-    <!-- الوظائف 2 × 2 على الموبايل -->
-    <div class="function-grid">
-
-      <div class="function-card" onclick="showPage('hotels')">
-        <div class="function-icon">🏨</div>
-        <h3>تصفح الفنادق</h3>
-        <p>شوف الفنادق والمعلومات المتاحة عنها</p>
-      </div>
-
-      <div class="function-card" onclick="showPage('maps')">
-        <div class="function-icon">📍</div>
-        <h3>مواقع الفنادق</h3>
-        <p>اعرف موقع الفندق وافتحه على الخريطة</p>
-      </div>
-
-      <div class="function-card" onclick="showPage('compare')">
-        <div class="function-icon">⚖️</div>
-        <h3>قارن الفنادق</h3>
-        <p>اختار حتى 3 فنادق وقارن بينهم</p>
-      </div>
-
-      <div class="function-card" onclick="showPage('rating')">
-        <div class="function-icon">⭐</div>
-        <h3>تصنيف الفنادق</h3>
-        <p>اعرض الفنادق حسب عدد النجوم</p>
-      </div>
-
-    </div>
 
   </div>
 
-</section>
-
-<section class="section" style="background:#f4f4f4">
-
-  <div class="container">
-
-    <div class="section-title">
-      <h2>طريقة الاستخدام</h2>
-      <p>4 خطوات بسيطة</p>
-    </div>
-
-    <div class="steps">
-
-      <div class="step">
-        <div class="step-number">1</div>
-        <h3>اختار الفندق</h3>
-        <p>تصفح الفنادق وابحث عن الفندق المناسب.</p>
-      </div>
-
-      <div class="step">
-        <div class="step-number">2</div>
-        <h3>اعرف التفاصيل</h3>
-        <p>شوف الموقع والتصنيف والخدمات المتاحة.</p>
-      </div>
-
-      <div class="step">
-        <div class="step-number">3</div>
-        <h3>قارن</h3>
-        <p>قارن حتى 3 فنادق في نفس الوقت.</p>
-      </div>
-
-      <div class="step">
-        <div class="step-number">4</div>
-        <h3>تواصل</h3>
-        <p>ابعت استفسارك مباشرة على واتساب.</p>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-</main>
-
-<!-- ================= HOTELS ================= -->
-
-<section id="hotels" class="page">
-
-<div class="section">
-
-<div class="container">
-
-<div class="section-title">
-  <h2>فنادق مكة</h2>
-  <p>ابحث واستخدم الفلاتر للوصول للفندق المناسب</p>
-</div>
-
-<div class="filter-box">
-
-<div class="filter-grid">
-
-<div class="field">
-<label>البحث</label>
-<input
-  id="searchInput"
-  type="text"
-  placeholder="اكتب اسم الفندق أو المنطقة..."
-  oninput="renderHotels()"
->
-</div>
-
-<div class="field">
-<label>النجوم</label>
-
-<select id="starFilter" onchange="renderHotels()">
-<option value="all">كل التصنيفات</option>
-<option value="5">5 نجوم</option>
-<option value="4">4 نجوم</option>
-<option value="3">3 نجوم</option>
-<option value="1">نجمة واحدة</option>
-<option value="0">غير محدد</option>
-</select>
-
-</div>
-
-<div class="field">
-
-<label>المواصلات</label>
-
-<select id="transportFilter" onchange="renderHotels()">
-<option value="all">الكل</option>
-<option value="yes">يوجد باص</option>
-<option value="no">لا يوجد باص</option>
-</select>
-
-</div>
-
-<div class="field">
-
-<label>الترتيب</label>
-
-<select id="sortFilter" onchange="renderHotels()">
-<option value="default">الافتراضي</option>
-<option value="distance">الأقرب للحرم</option>
-<option value="stars">الأعلى تصنيفًا</option>
-<option value="name">الاسم</option>
-</select>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="hotelsGrid" class="hotels-grid"></div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= DETAILS ================= -->
-
-<section id="details" class="page">
-
-<div class="section">
-
-<div class="container">
-
-<div id="detailsContent"></div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= MAPS ================= -->
-
-<section id="maps" class="page">
-
-<div class="section">
-
-<div class="container">
-
-<div class="section-title">
-<h2>مواقع الفنادق</h2>
-<p>اختار الفندق وافتح الموقع على خرائط Google</p>
-</div>
-
-<div id="mapsList" class="maps-list"></div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= COMPARE ================= -->
-
-<section id="compare" class="page">
-
-<div class="section">
-
-<div class="container">
-
-<div class="section-title">
-<h2>مقارنة الفنادق</h2>
-<p>يمكنك مقارنة حتى 3 فنادق</p>
-</div>
-
-<div id="compareContent"></div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= RATING ================= -->
-
-<section id="rating" class="page">
-
-<div class="section">
-
-<div class="container">
-
-<div class="section-title">
-<h2>تصنيف الفنادق</h2>
-<p>الفنادق مرتبة حسب التصنيف المتاح</p>
-</div>
-
-<div id="ratingContent"></div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-<div class="container">
-
-<div class="footer-grid">
-
-<div>
-<div class="footer-brand">mohammed kassem</div>
-
-<p>
-حجز فنادق مكة المكرمة والتواصل المباشر للاستفسار والحجز.
-</p>
-
-<p style="margin-top:10px">
-📱 01032321748
-</p>
-
-</div>
-
-<div>
-
-<h3 style="margin-bottom:10px">روابط</h3>
-
-<div class="footer-links">
-
-<button onclick="showPage('home')">الرئيسية</button>
-<button onclick="showPage('hotels')">الفنادق</button>
-<button onclick="showPage('maps')">مواقع الفنادق</button>
-<button onclick="showPage('compare')">المقارنة</button>
-
-</div>
-
-</div>
-
-<div>
-
-<h3 style="margin-bottom:10px">تواصل</h3>
-
-<div class="footer-links">
-
-<a
-href="https://wa.me/201032321748"
-target="_blank"
-style="color:#bbb;text-decoration:none"
->
-واتساب
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="copyright">
-© 2026 mohammed kassem - جميع الحقوق محفوظة
-</div>
-
-</div>
 
 </footer>
 
-<!-- ================= FLOATING ================= -->
-
-<a
-class="whatsapp"
-href="https://wa.me/201032321748"
-target="_blank"
-title="تواصل عبر واتساب"
->
-💬
-</a>
-
-<button
-id="topBtn"
-class="top-btn"
-onclick="window.scrollTo({top:0,behavior:'smooth'})"
->
-↑
-</button>
-
-<div id="toast" class="toast"></div>
-
-<div id="compareBar" class="compare-bar">
-
-<div class="compare-bar-inner">
-
-<div class="compare-count">
-تم اختيار <strong id="compareCount">0</strong> فنادق للمقارنة
-</div>
-
-<div style="display:flex;gap:8px">
-
-<button
-class="btn btn-primary"
-onclick="showPage('compare')"
->
-عرض المقارنة
-</button>
-
-<button
-class="btn btn-light"
-onclick="clearCompare()"
->
-مسح
-</button>
-
-</div>
-
-</div>
-
-</div>
 
 <script>
 
-/* ================= HOTEL DATA ================= */
+/* =====================================================
+   HOTEL DATA
+===================================================== */
 
 const hotels = [
 
-{
-id:"wahda",
-name:"فندق أبراج الوحدة",
-city:"مكة",
-location:"حي التيسير – شارع المنصور",
-distance:0.8,
-stars:3,
-transport:true,
-rooms:["double","triple","quad","family"],
-amenities:["wifi","restaurant","parking"],
-description:"فندق في حي التيسير بشارع المنصور، قريب من الحرم مع باص مجاني.",
-extra:"باص مجاني 24 ساعة وحوالي 7 دقائق بالمواصلات."
-},
+  {
+    id:"wahda",
+    name:"فندق أبراج الوحدة",
+    city:"مكة",
+    location:"حي التيسير – شارع المنصور",
+    distance:0.8,
+    stars:3,
+    transport:true,
+    rooms:["double","triple","quad","family"],
+    amenities:["wifi","restaurant","parking"]
+  },
 
-{
-id:"kadi",
-name:"فندق كدي تاور",
-city:"مكة",
-location:"شارع أجياد",
-distance:1.3,
-stars:4,
-transport:true,
-rooms:["double","triple","quad"],
-amenities:["wifi","restaurant"],
-description:"فندق 4 نجوم في شارع أجياد مع خدمات أساسية ومواصلات.",
-extra:"باص مجاني 24 ساعة."
-},
+  {
+    id:"kadi",
+    name:"فندق كدي تاور",
+    city:"مكة",
+    location:"شارع أجياد",
+    distance:1.3,
+    stars:4,
+    transport:true,
+    rooms:["double","triple","quad"],
+    amenities:["wifi","restaurant"]
+  },
 
-{
-id:"kaswa",
-name:"فندق أبراج الكسوة",
-city:"مكة",
-location:"حي التيسير – جرول",
-distance:1,
-stars:0,
-transport:true,
-rooms:["double","triple","quad","family"],
-amenities:["wifi","restaurant"],
-description:"فندق في منطقة التيسير – جرول مع خدمة مواصلات.",
-extra:"التصنيف غير محدد في البيانات الحالية."
-},
+  {
+    id:"kaswa",
+    name:"فندق أبراج الكسوة",
+    city:"مكة",
+    location:"حي التيسير – جرول",
+    distance:1,
+    stars:0,
+    transport:true,
+    rooms:["double","triple","quad","family"],
+    amenities:["wifi","restaurant"]
+  },
 
-{
-id:"elaf",
-name:"فندق إيلاف بكة",
-city:"مكة",
-location:"العزيزية – محبس الجن",
-distance:2.4,
-stars:5,
-transport:true,
-rooms:["double","triple","quad","suite","family"],
-amenities:["wifi","restaurant","parking"],
-description:"فندق 5 نجوم في منطقة العزيزية – محبس الجن.",
-extra:"تتوفر خدمة مواصلات حسب البيانات المتاحة."
-},
+  {
+    id:"elaf",
+    name:"فندق إيلاف بكة",
+    city:"مكة",
+    location:"العزيزية – محبس الجن",
+    distance:2.4,
+    stars:5,
+    transport:true,
+    rooms:["double","triple","quad","suite","family"],
+    amenities:["wifi","restaurant","parking"]
+  },
 
-{
-id:"alyan",
-name:"فندق قصر العليان",
-city:"مكة",
-location:"شارع أجياد",
-distance:1.2,
-stars:3,
-transport:true,
-rooms:["double","triple","quad"],
-amenities:["wifi","roomService"],
-description:"فندق 3 نجوم في شارع أجياد باستقبال فخم.",
-extra:"10 مصاعد، Wi-Fi، خدمة غرف 24 ساعة وسعر اقتصادي جدًا."
-},
+  {
+    id:"alyan",
+    name:"فندق قصر العليان",
+    city:"مكة",
+    location:"شارع أجياد",
+    distance:1.2,
+    stars:3,
+    transport:true,
+    rooms:["double","triple","quad"],
+    amenities:["wifi","roomService"]
+  },
 
-{
-id:"voco",
-name:"فندق فوكو",
-city:"مكة",
-location:"شارع إبراهيم الخليل",
-distance:1.2,
-stars:5,
-transport:true,
-rooms:["double","triple","quad"],
-amenities:["wifi","restaurant"],
-description:"فندق 5 نجوم في شارع إبراهيم الخليل.",
-extra:"حوالي 1200 متر من الحرم وباص خاص مجاني طوال اليوم."
-},
+  {
+    id:"voco",
+    name:"فندق فوكو",
+    city:"مكة",
+    location:"شارع إبراهيم الخليل",
+    distance:1.2,
+    stars:5,
+    transport:true,
+    rooms:["double","triple","quad"],
+    amenities:["wifi","restaurant"]
+  },
 
-{
-id:"taysir",
-name:"فندق أبراج التيسير",
-city:"مكة",
-location:"حي التيسير",
-distance:0.9,
-stars:4,
-transport:true,
-rooms:["double","triple","quad","family"],
-amenities:["wifi","restaurant"],
-description:"فندق 4 نجوم في حي التيسير قريب من الحرم.",
-extra:"900 متر من الحرم، حوالي 10 دقائق مشي، وباصات 24 ساعة."
-},
+  {
+    id:"taysir",
+    name:"فندق أبراج التيسير",
+    city:"مكة",
+    location:"حي التيسير",
+    distance:0.9,
+    stars:4,
+    transport:true,
+    rooms:["double","triple","quad","family"],
+    amenities:["wifi","restaurant"]
+  },
 
-{
-id:"nazil",
-name:"فندق نزيل المشاعر",
-city:"مكة",
-location:"إبراهيم الخليل",
-distance:null,
-stars:0,
-transport:false,
-rooms:["double","triple","quad"],
-amenities:[],
-description:"فندق في منطقة إبراهيم الخليل.",
-extra:"المسافة المذكورة سابقًا حوالي 10 دقائق مشي."
-},
+  {
+    id:"nazil",
+    name:"فندق نزيل المشاعر",
+    city:"مكة",
+    location:"إبراهيم الخليل",
+    distance:null,
+    stars:0,
+    transport:false,
+    rooms:["double","triple","quad"],
+    amenities:[]
+  },
 
-{
-id:"manarat",
-name:"فندق منارات غزة",
-city:"مكة",
-location:"الحجون / الغزة",
-distance:null,
-stars:3,
-transport:true,
-rooms:["double","triple","quad","family","suite"],
-amenities:["wifi","restaurant","parking","roomService"],
-description:"فندق 3 نجوم في منطقة الحجون / الغزة.",
-extra:"تتوفر خدمة مواصلات."
-},
+  {
+    id:"manarat",
+    name:"فندق منارات غزة",
+    city:"مكة",
+    location:"الحجون / الغزة",
+    distance:null,
+    stars:3,
+    transport:true,
+    rooms:["double","triple","quad","family","suite"],
+    amenities:["wifi","restaurant","parking","roomService"]
+  },
 
-{
-id:"mathaba",
-name:"فندق مثابة",
-city:"مكة",
-location:"حي التيسير",
-distance:null,
-stars:3,
-transport:true,
-rooms:["double","triple","quad"],
-amenities:["wifi","restaurant","parking","roomService"],
-description:"فندق 3 نجوم في حي التيسير.",
-extra:"تتوفر خدمة مواصلات حسب البيانات المتاحة."
-},
+  {
+    id:"mathaba",
+    name:"فندق مثابة",
+    city:"مكة",
+    location:"حي التيسير",
+    distance:null,
+    stars:3,
+    transport:true,
+    rooms:["double","triple","quad"],
+    amenities:["wifi","restaurant","parking","roomService"]
+  },
 
-{
-id:"palestine",
-name:"فندق فلسطين",
-city:"مكة",
-location:"شارع إبراهيم الخليل – المنطقة المركزية",
-distance:0.85,
-stars:3,
-transport:false,
-rooms:["double","triple","quad"],
-amenities:["wifi","restaurant","parking","roomService","gym"],
-description:"فندق 3 نجوم في شارع إبراهيم الخليل بالمنطقة المركزية.",
-extra:"قريب من الحرم حسب المسافة المسجلة."
-},
+  {
+    id:"palestine",
+    name:"فندق فلسطين",
+    city:"مكة",
+    location:"شارع إبراهيم الخليل – المنطقة المركزية",
+    distance:0.85,
+    stars:3,
+    transport:false,
+    rooms:["double","triple","quad"],
+    amenities:["wifi","restaurant","parking","roomService","gym"]
+  },
 
-{
-id:"makarem",
-name:"فندق مكارم الهجرة",
-city:"مكة",
-location:"المسفلة",
-distance:1.4,
-stars:0,
-transport:true,
-rooms:["double","triple","quad","family"],
-amenities:["wifi","restaurant","parking","gym","pool"],
-description:"فندق في منطقة المسفلة.",
-extra:"التصنيف غير محدد في البيانات الحالية."
-},
+  {
+    id:"makarem",
+    name:"فندق مكارم الهجرة",
+    city:"مكة",
+    location:"المسفلة",
+    distance:1.4,
+    stars:0,
+    transport:true,
+    rooms:["double","triple","quad","family"],
+    amenities:["wifi","restaurant","parking","gym","pool"]
+  },
 
-{
-id:"safwa",
-name:"فندق صفوة البيت",
-city:"مكة",
-location:"المسفلة – طريق الهجرة",
-distance:null,
-stars:1,
-transport:false,
-rooms:["double","triple","quad","family"],
-amenities:["wifi","restaurant","parking","roomService"],
-description:"فندق مصنف نجمة واحدة في منطقة المسفلة.",
-extra:"لا توجد خدمة مواصلات مسجلة في البيانات الحالية."
-},
+  {
+    id:"safwa",
+    name:"فندق صفوة البيت",
+    city:"مكة",
+    location:"المسفلة – طريق الهجرة",
+    distance:null,
+    stars:1,
+    transport:false,
+    rooms:["double","triple","quad","family"],
+    amenities:["wifi","restaurant","parking","roomService"]
+  },
 
-{
-id:"shorfa",
-name:"فندق شرفة الطلائع",
-city:"مكة",
-location:"شارع أجياد – الروابي",
-distance:1.5,
-stars:0,
-transport:true,
-rooms:["double","triple","quad"],
-amenities:["wifi","restaurant","parking","gym"],
-description:"فندق في شارع أجياد – الروابي.",
-extra:"تتوفر خدمة مواصلات."
-},
+  {
+    id:"shorfa",
+    name:"فندق شرفة الطلائع",
+    city:"مكة",
+    location:"شارع أجياد – الروابي",
+    distance:1.5,
+    stars:0,
+    transport:true,
+    rooms:["double","triple","quad"],
+    amenities:["wifi","restaurant","parking","gym"]
+  },
 
-{
-id:"dhiafa",
-name:"فندق ضيافة الرجاء",
-city:"مكة",
-location:"إبراهيم الخليل – الهجلة",
-distance:null,
-stars:3,
-transport:true,
-rooms:["double","triple","quad","family"],
-amenities:["wifi","parking","roomService"],
-description:"فندق 3 نجوم في منطقة إبراهيم الخليل – الهجلة.",
-extra:"تتوفر خدمة مواصلات."
-},
+  {
+    id:"dhiafa",
+    name:"فندق ضيافة الرجاء",
+    city:"مكة",
+    location:"إبراهيم الخليل – الهجلة",
+    distance:null,
+    stars:3,
+    transport:true,
+    rooms:["double","triple","quad","family"],
+    amenities:["wifi","parking","roomService"]
+  },
 
-{
-id:"saraya",
-name:"فندق سرايا الجوار",
-city:"مكة",
-location:"العزيزية – شارع الرحمة",
-distance:2.8,
-stars:3,
-transport:true,
-rooms:["double","triple","quad"],
-amenities:["wifi","restaurant","parking"],
-description:"فندق 3 نجوم في العزيزية – شارع الرحمة.",
-extra:"تتوفر خدمة مواصلات."
-},
+  {
+    id:"saraya",
+    name:"فندق سرايا الجوار",
+    city:"مكة",
+    location:"العزيزية – شارع الرحمة",
+    distance:2.8,
+    stars:3,
+    transport:true,
+    rooms:["double","triple","quad"],
+    amenities:["wifi","restaurant","parking"]
+  },
 
-{
-id:"olayanGrand",
-name:"فندق العليان جراند",
-city:"مكة",
-location:"شارع أجياد – حي الروابي",
-distance:1.8,
-stars:1,
-transport:false,
-rooms:["double","triple","quad","family"],
-amenities:["wifi","parking","roomService"],
-description:"فندق مصنف نجمة واحدة في شارع أجياد – حي الروابي.",
-extra:"لا توجد خدمة مواصلات مسجلة."
-},
+  {
+    id:"olayanGrand",
+    name:"فندق العليان جراند",
+    city:"مكة",
+    location:"شارع أجياد – حي الروابي",
+    distance:1.8,
+    stars:1,
+    transport:false,
+    rooms:["double","triple","quad","family"],
+    amenities:["wifi","parking","roomService"]
+  },
 
-{
-id:"arkaan",
-name:"فندق أركان بكة",
-city:"مكة",
-location:"طريق 38 – طريق الملك عبدالعزيز، العزيزية",
-distance:4.45,
-stars:4,
-transport:true,
-rooms:["double","triple","quad","family"],
-amenities:["restaurant","parking","roomService"],
-description:"فندق 4 نجوم في العزيزية على طريق الملك عبدالعزيز.",
-extra:"تتوفر خدمة مواصلات."
-}
+  {
+    id:"arkaan",
+    name:"فندق أركان بكة",
+    city:"مكة",
+    location:"طريق 38 – طريق الملك عبدالعزيز، العزيزية",
+    distance:4.45,
+    stars:4,
+    transport:true,
+    rooms:["double","triple","quad","family"],
+    amenities:["restaurant","parking","roomService"]
+  }
 
 ];
 
-/* ================= PAGE ================= */
 
-function showPage(id,button){
+/* =====================================================
+   NAMES
+===================================================== */
 
-document.querySelectorAll(".page").forEach(page=>{
-  page.classList.remove("active");
-});
+const roomNames = {
 
-const page=document.getElementById(id);
+  double:"غرفة ثنائية",
 
-if(page){
-  page.classList.add("active");
+  triple:"غرفة ثلاثية",
+
+  quad:"غرفة رباعية",
+
+  family:"غرفة عائلية",
+
+  suite:"جناح"
+
+};
+
+
+const amenityNames = {
+
+  wifi:"واي فاي",
+
+  restaurant:"مطعم",
+
+  parking:"مواقف",
+
+  roomService:"خدمة غرف",
+
+  gym:"نادي رياضي",
+
+  pool:"مسبح"
+
+};
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function getHotel(id){
+
+  return hotels.find(
+    h => h.id === id
+  );
+
 }
 
-document.querySelectorAll(".nav-links button").forEach(btn=>{
-  btn.classList.remove("active");
-});
-
-if(button){
-  button.classList.add("active");
-}
-
-window.scrollTo({
-  top:0,
-  behavior:"smooth"
-});
-
-if(id==="hotels") renderHotels();
-if(id==="maps") renderMaps();
-if(id==="compare") renderCompare();
-if(id==="rating") renderRating();
-
-}
-
-/* ================= STARS ================= */
 
 function starsHTML(stars){
 
-if(!stars){
-  return '<span style="color:#888">غير محدد</span>';
-}
+  if(!stars){
 
-return "★".repeat(stars) +
-       '<span style="color:#ddd">' +
-       "★".repeat(5-stars) +
-       "</span>";
+    return `
+      <div class="hotel-stars no-rating">
+        غير محدد
+      </div>
+    `;
 
-}
+  }
 
-/* ================= IMAGE ================= */
-
-function hotelImageHTML(hotel,large=false){
-
-if(hotel.image){
-
-return `
-<div class="hotel-photo" style="height:${large?"300px":"200px"}">
-<img src="${hotel.image}" alt="${hotel.name}">
-</div>
-`;
+  return `
+    <div class="hotel-stars">
+      ${"★".repeat(stars)}
+      ${"☆".repeat(5-stars)}
+    </div>
+  `;
 
 }
 
-return `
-<div class="hotel-photo" style="height:${large?"300px":"200px"}">
-<div class="no-image">🏨</div>
-</div>
-`;
+
+function distanceText(distance){
+
+  if(
+    distance === null ||
+    distance === undefined
+  ){
+
+    return "المسافة غير محددة";
+
+  }
+
+  return `${distance} كم`;
 
 }
 
-/* ================= HOTEL CARD ================= */
 
-function hotelCard(hotel){
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
-const checked=getCompare().includes(hotel.id);
+let currentPage = "home";
 
-return `
 
-<div class="hotel-card">
+function go(page,id=null){
 
-${hotelImageHTML(hotel)}
+  currentPage = page;
 
-<div class="hotel-body">
 
-<div class="hotel-badge">
-${hotel.stars ? hotel.stars+" نجوم" : "التصنيف غير محدد"}
-</div>
+  document
+    .querySelectorAll(".page")
+    .forEach(p=>{
+      p.classList.remove("active");
+    });
 
-<h3>${hotel.name}</h3>
 
-<div class="hotel-location">
-📍 ${hotel.location}
-</div>
+  const target =
+    document.getElementById(page);
 
-<div class="stars">
-${starsHTML(hotel.stars)}
-</div>
 
-<div class="meta">
+  if(target){
 
-<span>
-📏 ${
-hotel.distance !== null
-? hotel.distance+" كم"
-: "المسافة غير محددة"
+    target.classList.add("active");
+
+  }
+
+
+  document
+    .querySelectorAll(".nav button")
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
+
+
+  const navMap = {
+
+    home:0,
+
+    hotels:1,
+
+    maps:2,
+
+    compare:3,
+
+    ratings:4
+
+  };
+
+
+  if(navMap[page] !== undefined){
+
+    const buttons =
+      document.querySelectorAll(".nav button");
+
+    if(buttons[navMap[page]]){
+
+      buttons[navMap[page]]
+        .classList.add("active");
+
+    }
+
+  }
+
+
+  closeMenu();
+
+
+  window.scrollTo({
+
+    top:0,
+
+    behavior:"smooth"
+
+  });
+
+
+  if(page === "hotels"){
+
+    renderHotels();
+
+  }
+
+
+  if(page === "maps"){
+
+    renderMaps();
+
+  }
+
+
+  if(page === "compare"){
+
+    renderComparePage();
+
+  }
+
+
+  if(page === "ratings"){
+
+    renderRatings();
+
+  }
+
+
+  if(page === "details" && id){
+
+    renderDetails(id);
+
+  }
+
+
+  const hash =
+    id
+    ? `#${page}=${id}`
+    : `#${page}`;
+
+
+  history.pushState(
+
+    {page,id},
+
+    "",
+
+    hash
+
+  );
+
 }
-</span>
 
-<span>
-🚌 ${hotel.transport ? "باص" : "بدون باص"}
-</span>
 
-</div>
+function goBack(){
 
-<div class="hotel-description">
-${hotel.description}
-</div>
+  if(currentPage === "details"){
 
-<div class="hotel-actions">
+    go("hotels");
 
-<button
-class="btn btn-primary"
-onclick="openDetails('${hotel.id}')"
->
-التفاصيل
-</button>
+  }else{
 
-<button
-class="btn btn-dark"
-onclick="openMaps('${hotel.id}')"
->
-الخريطة
-</button>
+    go("home");
 
-<button
-class="btn btn-gold"
-onclick="whatsappHotel('${hotel.id}')"
->
-واتساب
-</button>
-
-<button
-class="btn btn-light"
-onclick="toggleCompare('${hotel.id}')"
->
-${checked ? "✓ تمت الإضافة" : "⚖️ مقارنة"}
-</button>
-
-</div>
-
-<label class="compare-check">
-
-<input
-type="checkbox"
-${checked ? "checked" : ""}
-onchange="toggleCompare('${hotel.id}')"
->
-
-إضافة للمقارنة
-
-</label>
-
-</div>
-
-</div>
-
-`;
+  }
 
 }
 
-/* ================= RENDER HOTELS ================= */
+
+window.addEventListener(
+  "popstate",
+  loadFromHash
+);
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+function toggleMenu(){
+
+  document
+    .getElementById("mainNav")
+    .classList.toggle("open");
+
+}
+
+
+function closeMenu(){
+
+  document
+    .getElementById("mainNav")
+    .classList.remove("open");
+
+}
+
+
+/* =====================================================
+   FILTERS
+===================================================== */
+
+function initFilters(){
+
+  const locationSelect =
+    document.getElementById("locationFilter");
+
+
+  const locations =
+    [
+      ...new Set(
+        hotels.map(
+          h=>h.location
+        )
+      )
+    ];
+
+
+  locations.forEach(location=>{
+
+    const option =
+      document.createElement("option");
+
+
+    option.value =
+      location;
+
+
+    option.textContent =
+      location;
+
+
+    locationSelect.appendChild(
+      option
+    );
+
+  });
+
+
+  renderHotels();
+
+}
+
+
+function handleHotelSearch(){
+
+  showHotelSuggestions();
+
+  renderHotels();
+
+}
+
+
+function showHotelSuggestions(){
+
+  const input =
+    document.getElementById(
+      "hotelSearch"
+    );
+
+
+  const suggestions =
+    document.getElementById(
+      "suggestions"
+    );
+
+
+  if(!input || !suggestions){
+
+    return;
+
+  }
+
+
+  const value =
+    input.value
+      .trim()
+      .toLowerCase();
+
+
+  if(!value){
+
+    suggestions.style.display =
+      "none";
+
+    return;
+
+  }
+
+
+  const matches =
+    hotels
+      .filter(
+        h =>
+          h.name
+            .toLowerCase()
+            .includes(value)
+      )
+      .slice(0,7);
+
+
+  if(!matches.length){
+
+    suggestions.style.display =
+      "none";
+
+    return;
+
+  }
+
+
+  suggestions.innerHTML =
+    matches
+      .map(h=>`
+
+        <div
+          onclick="selectHotelSuggestion('${h.id}')"
+        >
+          ${h.name}
+        </div>
+
+      `)
+      .join("");
+
+
+  suggestions.style.display =
+    "block";
+
+}
+
+
+function selectHotelSuggestion(id){
+
+  const hotel =
+    getHotel(id);
+
+
+  if(!hotel){
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "hotelSearch"
+  ).value =
+    hotel.name;
+
+
+  document.getElementById(
+    "suggestions"
+  ).style.display =
+    "none";
+
+
+  renderHotels();
+
+}
+
 
 function renderHotels(){
 
-const grid=document.getElementById("hotelsGrid");
+  const grid =
+    document.getElementById(
+      "hotelsGrid"
+    );
 
-if(!grid) return;
 
-const search=
-(document.getElementById("searchInput")?.value || "")
-.trim()
-.toLowerCase();
+  if(!grid){
 
-const stars=
-document.getElementById("starFilter")?.value || "all";
+    return;
 
-const transport=
-document.getElementById("transportFilter")?.value || "all";
+  }
 
-const sort=
-document.getElementById("sortFilter")?.value || "default";
 
-let list=hotels.filter(hotel=>{
+  const search =
+    (
+      document.getElementById(
+        "hotelSearch"
+      )?.value || ""
+    )
+    .trim()
+    .toLowerCase();
 
-const matchesSearch=
-!search ||
-hotel.name.toLowerCase().includes(search) ||
-hotel.location.toLowerCase().includes(search);
 
-const matchesStars=
-stars==="all" ||
-String(hotel.stars)===stars;
+  const location =
+    document.getElementById(
+      "locationFilter"
+    )?.value || "";
 
-const matchesTransport=
-transport==="all" ||
-(transport==="yes" && hotel.transport) ||
-(transport==="no" && !hotel.transport);
 
-return matchesSearch &&
-matchesStars &&
-matchesTransport;
+  const stars =
+    document.getElementById(
+      "starsFilter"
+    )?.value || "";
 
-});
 
-if(sort==="distance"){
+  const distance =
+    document.getElementById(
+      "distanceFilter"
+    )?.value || "";
 
-list.sort((a,b)=>{
 
-if(a.distance===null) return 1;
-if(b.distance===null) return -1;
+  const transport =
+    document.getElementById(
+      "transportFilter"
+    )?.value || "";
 
-return a.distance-b.distance;
 
-});
+  const room =
+    document.getElementById(
+      "roomFilter"
+    )?.value || "";
+
+
+  const result =
+    hotels.filter(h=>{
+
+      if(
+        search &&
+        !h.name
+          .toLowerCase()
+          .includes(search)
+      ){
+
+        return false;
+
+      }
+
+
+      if(
+        location &&
+        h.location !== location
+      ){
+
+        return false;
+
+      }
+
+
+      if(
+        stars &&
+        String(h.stars) !== stars
+      ){
+
+        return false;
+
+      }
+
+
+      if(distance){
+
+        if(h.distance === null){
+
+          return false;
+
+        }
+
+
+        if(
+          h.distance >
+          Number(distance)
+        ){
+
+          return false;
+
+        }
+
+      }
+
+
+      if(
+        transport === "yes" &&
+        !h.transport
+      ){
+
+        return false;
+
+      }
+
+
+      if(
+        transport === "no" &&
+        h.transport
+      ){
+
+        return false;
+
+      }
+
+
+      if(
+        room &&
+        !h.rooms.includes(room)
+      ){
+
+        return false;
+
+      }
+
+
+      return true;
+
+    });
+
+
+  document.getElementById(
+    "resultCount"
+  ).textContent =
+    `عدد الفنادق: ${result.length}`;
+
+
+  if(!result.length){
+
+    grid.innerHTML = `
+
+      <div
+        class="no-results"
+        style="grid-column:1/-1"
+      >
+
+        لا توجد فنادق مطابقة للفلاتر الحالية.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  grid.innerHTML =
+    result
+      .map(hotelCardHTML)
+      .join("");
 
 }
 
-if(sort==="stars"){
 
-list.sort((a,b)=>b.stars-a.stars);
+function hotelCardHTML(h){
+
+  const compared =
+    isCompared(h.id);
+
+
+  return `
+
+    <article class="hotel-card">
+
+
+      <div class="hotel-top">
+
+        <div class="hotel-city">
+          ${h.city}
+        </div>
+
+
+        ${starsHTML(h.stars)}
+
+
+        <div class="hotel-name">
+          ${h.name}
+        </div>
+
+
+      </div>
+
+
+      <div class="hotel-body">
+
+
+        <div class="hotel-location">
+          📍 ${h.location}
+        </div>
+
+
+        <div class="hotel-meta">
+
+          <span class="meta">
+            📏 ${distanceText(h.distance)}
+          </span>
+
+          <span class="meta">
+            ${
+              h.transport
+              ? "🚌 مواصلات"
+              : "🚫 بدون مواصلات"
+            }
+          </span>
+
+          <span class="meta">
+            🛏️ ${h.rooms.length} أنواع غرف
+          </span>
+
+        </div>
+
+
+        <div class="hotel-actions">
+
+
+          <button
+            class="details-btn"
+            onclick="go('details','${h.id}')"
+          >
+            التفاصيل
+          </button>
+
+
+          <button
+            class="compare-btn ${
+              compared
+              ? "selected"
+              : ""
+            }"
+            onclick="toggleCompare('${h.id}')"
+          >
+            ${
+              compared
+              ? "✓ تمت الإضافة"
+              : "⚖️ قارن"
+            }
+          </button>
+
+
+        </div>
+
+
+      </div>
+
+
+    </article>
+
+  `;
 
 }
 
-if(sort==="name"){
 
-list.sort((a,b)=>a.name.localeCompare(b.name,"ar"));
+function clearFilters(){
 
-}
+  document.getElementById(
+    "hotelSearch"
+  ).value = "";
 
-if(!list.length){
 
-grid.innerHTML=`
+  document.getElementById(
+    "locationFilter"
+  ).value = "";
 
-<div style="
-grid-column:1/-1;
-background:#fff;
-padding:40px;
-text-align:center;
-border-radius:18px;
-box-shadow:var(--shadow);
-">
 
-<h3>لا توجد نتائج</h3>
+  document.getElementById(
+    "starsFilter"
+  ).value = "";
 
-<p style="color:#777">
-جرب تغيير البحث أو الفلاتر.
-</p>
 
-</div>
+  document.getElementById(
+    "distanceFilter"
+  ).value = "";
 
-`;
 
-return;
+  document.getElementById(
+    "transportFilter"
+  ).value = "";
 
-}
 
-grid.innerHTML=list.map(hotelCard).join("");
+  document.getElementById(
+    "roomFilter"
+  ).value = "";
 
-}
 
-/* ================= DETAILS ================= */
-
-function openDetails(id){
-
-const hotel=hotels.find(h=>h.id===id);
-
-if(!hotel) return;
-
-const rooms={
-double:"مزدوج",
-triple:"ثلاثي",
-quad:"رباعي",
-family:"عائلي",
-suite:"جناح"
-};
-
-const amenityNames={
-wifi:"📶 Wi-Fi",
-restaurant:"🍽️ مطعم",
-parking:"🅿️ موقف سيارات",
-roomService:"🛎️ خدمة غرف",
-gym:"🏋️ جيم",
-pool:"🏊 مسبح"
-};
-
-document.getElementById("detailsContent").innerHTML=`
-
-<div class="details-box">
-
-${hotelImageHTML(hotel,true)}
-
-<div class="details-header" style="margin-top:20px">
-
-<div>
-
-<h2>${hotel.name}</h2>
-
-<div class="hotel-location">
-📍 ${hotel.location}
-</div>
-
-<div class="stars">
-${starsHTML(hotel.stars)}
-</div>
-
-</div>
-
-<button
-class="btn btn-primary"
-onclick="whatsappHotel('${hotel.id}')"
->
-💬 استفسار واتساب
-</button>
-
-</div>
-
-<div class="details-grid">
-
-<div class="info-card">
-
-<h3>معلومات الفندق</h3>
-
-<p>
-📍 الموقع: ${hotel.location}
-</p>
-
-<p>
-📏 المسافة:
-${
-hotel.distance !== null
-? hotel.distance+" كم"
-: "غير محددة"
-}
-</p>
-
-<p>
-⭐ التصنيف:
-${hotel.stars ? hotel.stars+" نجوم" : "غير محدد"}
-</p>
-
-<p>
-🚌 المواصلات:
-${hotel.transport ? "متوفرة" : "غير مسجلة"}
-</p>
-
-</div>
-
-<div class="info-card">
-
-<h3>الغرف المتاحة في البيانات</h3>
-
-<div class="amenities">
-
-${
-hotel.rooms.length
-?
-hotel.rooms.map(room=>`
-<div class="amenity">
-${rooms[room] || room}
-</div>
-`).join("")
-:
-'<div class="amenity">غير محدد</div>'
-}
-
-</div>
-
-</div>
-
-<div class="info-card">
-
-<h3>الخدمات</h3>
-
-<div class="amenities">
-
-${
-hotel.amenities.length
-?
-hotel.amenities.map(a=>`
-<div class="amenity">
-${amenityNames[a] || a}
-</div>
-`).join("")
-:
-'<div class="amenity">لا توجد بيانات خدمات إضافية</div>'
-}
-
-</div>
-
-</div>
-
-<div class="info-card">
-
-<h3>ملاحظات</h3>
-
-<p>
-${hotel.description}
-</p>
-
-<p style="margin-top:10px">
-${hotel.extra}
-</p>
-
-</div>
-
-</div>
-
-<div style="
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-top:20px;
-">
-
-<button
-class="btn btn-light"
-onclick="showPage('hotels')"
->
-← العودة للفنادق
-</button>
-
-<button
-class="btn btn-dark"
-onclick="openMaps('${hotel.id}')"
->
-📍 فتح الموقع
-</button>
-
-<button
-class="btn btn-gold"
-onclick="toggleCompare('${hotel.id}')"
->
-⚖️ إضافة للمقارنة
-</button>
-
-</div>
-
-</div>
-`;
-
-showPage("details");
+  renderHotels();
 
 }
 
-/* ================= WHATSAPP ================= */
 
-function whatsappHotel(id){
+/* =====================================================
+   DETAILS
+===================================================== */
 
-const hotel=hotels.find(h=>h.id===id);
+function renderDetails(id){
 
-if(!hotel) return;
+  const h =
+    getHotel(id);
 
-const message=
-`السلام عليكم، أريد الاستفسار عن ${hotel.name} في مكة المكرمة.`;
 
-const url=
-"https://wa.me/201032321748?text="+
-encodeURIComponent(message);
+  const box =
+    document.getElementById(
+      "detailsContent"
+    );
 
-window.open(url,"_blank");
+
+  if(!h || !box){
+
+    return;
+
+  }
+
+
+  const rooms =
+    h.rooms
+      .map(
+        r =>
+          `<span class="amenity">
+            ${roomNames[r]}
+          </span>`
+      )
+      .join("");
+
+
+  const amenities =
+    h.amenities.length
+
+    ?
+
+      h.amenities
+        .map(
+          a =>
+            `<span class="amenity">
+              ✓ ${amenityNames[a]}
+            </span>`
+        )
+        .join("")
+
+    :
+
+      `<span class="amenity">
+        لا توجد بيانات إضافية
+      </span>`;
+
+
+  box.innerHTML = `
+
+    <div class="detail-box">
+
+
+      <div class="detail-head">
+
+        ${starsHTML(h.stars)}
+
+        <h1>
+          ${h.name}
+        </h1>
+
+        <p>
+          📍 ${h.location}
+        </p>
+
+      </div>
+
+
+      <div class="detail-content">
+
+
+        <div class="detail-grid">
+
+
+          <div class="detail-item">
+
+            <strong>
+              الموقع
+            </strong>
+
+            <span>
+              ${h.location}
+            </span>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <strong>
+              المسافة
+            </strong>
+
+            <span>
+              ${distanceText(h.distance)}
+            </span>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <strong>
+              المواصلات
+            </strong>
+
+            <span>
+              ${
+                h.transport
+                ? "متوفرة"
+                : "غير متوفرة حسب البيانات الحالية"
+              }
+            </span>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <strong>
+              التصنيف
+            </strong>
+
+            <span>
+              ${
+                h.stars
+                ? h.stars + " نجوم"
+                : "غير محدد"
+              }
+            </span>
+
+          </div>
+
+
+        </div>
+
+
+        <h3
+          style="
+            color:var(--red);
+            font-size:16px;
+          "
+        >
+          أنواع الغرف
+        </h3>
+
+
+        <div class="amenities">
+          ${rooms}
+        </div>
+
+
+        <h3
+          style="
+            color:var(--red);
+            font-size:16px;
+          "
+        >
+          المميزات
+        </h3>
+
+
+        <div class="amenities">
+          ${amenities}
+        </div>
+
+
+        <div
+          style="
+            display:flex;
+            flex-wrap:wrap;
+            gap:8px;
+            margin-top:20px;
+          "
+        >
+
+
+          <button
+            class="btn btn-primary"
+            onclick="hotelWhatsApp('${h.id}')"
+          >
+            💬 استفسار وحجز عبر واتساب
+          </button>
+
+
+          <button
+            class="btn btn-gold"
+            onclick="openMap('${h.id}')"
+          >
+            📍 فتح الموقع
+          </button>
+
+
+          <button
+            class="btn btn-outline"
+            onclick="toggleCompare('${h.id}')"
+          >
+            ⚖️ إضافة للمقارنة
+          </button>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  `;
 
 }
 
-/* ================= MAPS ================= */
 
-function openMaps(id){
+/* =====================================================
+   WHATSAPP
+===================================================== */
 
-const hotel=hotels.find(h=>h.id===id);
+function hotelWhatsApp(id){
 
-if(!hotel) return;
+  const h =
+    getHotel(id);
 
-const query=
-encodeURIComponent(
-hotel.name+" "+hotel.location+" مكة"
-);
 
-window.open(
-"https://www.google.com/maps/search/?api=1&query="+query,
-"_blank"
-);
+  if(!h){
 
-}
+    return;
 
-/* ================= COMPARE ================= */
+  }
 
-function getCompare(){
 
-try{
+  const message =
+`السلام عليكم، أريد الاستفسار عن الحجز في ${h.name} في مكة.
 
-return JSON.parse(
-localStorage.getItem("hotelCompare") || "[]"
-);
+الموقع: ${h.location}
+المسافة: ${distanceText(h.distance)}
 
-}catch(e){
+من فضلكم أرسلوا لي الأسعار والتفاصيل المتاحة.`;
 
-return [];
 
-}
+  const url =
+    `https://wa.me/201032321748?text=${
+      encodeURIComponent(message)
+    }`;
 
-}
 
-function saveCompare(list){
-
-localStorage.setItem(
-"hotelCompare",
-JSON.stringify(list)
-);
-
-updateCompareBar();
+  window.open(
+    url,
+    "_blank"
+  );
 
 }
 
-function toggleCompare(id){
 
-let list=getCompare();
+/* =====================================================
+   GOOGLE MAPS
+===================================================== */
 
-if(list.includes(id)){
+function openMap(id){
 
-list=list.filter(x=>x!==id);
+  const h =
+    getHotel(id);
 
-}else{
 
-if(list.length>=3){
+  if(!h){
 
-showToast("يمكنك مقارنة 3 فنادق فقط");
+    return;
 
-return;
+  }
 
-}
 
-list.push(id);
+  const query =
+    `${h.name}, ${h.location}, مكة المكرمة`;
 
-}
 
-saveCompare(list);
+  const url =
+    `https://www.google.com/maps/search/?api=1&query=${
+      encodeURIComponent(query)
+    }`;
 
-renderHotels();
-renderCompare();
 
-}
-
-function clearCompare(){
-
-localStorage.removeItem("hotelCompare");
-
-updateCompareBar();
-renderHotels();
-renderCompare();
+  window.open(
+    url,
+    "_blank"
+  );
 
 }
 
-function updateCompareBar(){
-
-const list=getCompare();
-
-const bar=document.getElementById("compareBar");
-const count=document.getElementById("compareCount");
-
-if(!bar) return;
-
-count.textContent=list.length;
-
-bar.style.display=
-list.length
-? "block"
-: "none";
-
-}
-
-/* ================= RENDER COMPARE ================= */
-
-function renderCompare(){
-
-const box=document.getElementById("compareContent");
-
-if(!box) return;
-
-const ids=getCompare();
-
-const selected=
-ids.map(id=>hotels.find(h=>h.id===id))
-.filter(Boolean);
-
-if(!selected.length){
-
-box.innerHTML=`
-
-<div style="
-background:#fff;
-padding:45px;
-text-align:center;
-border-radius:18px;
-box-shadow:var(--shadow);
-">
-
-<h3>لم يتم اختيار فنادق للمقارنة</h3>
-
-<p style="color:#777;margin:8px 0 18px">
-اذهب إلى صفحة الفنادق واختار حتى 3 فنادق.
-</p>
-
-<button
-class="btn btn-primary"
-onclick="showPage('hotels')"
->
-تصفح الفنادق
-</button>
-
-</div>
-
-`;
-
-return;
-
-}
-
-let rows="";
-
-const features=[
-["التصنيف",h=>h.stars ? h.stars+" نجوم":"غير محدد"],
-["الموقع",h=>h.location],
-["المسافة",h=>h.distance!==null ? h.distance+" كم":"غير محددة"],
-["المواصلات",h=>h.transport ? "متوفرة":"غير مسجلة"],
-["الغرف",h=>h.rooms.map(r=>({
-double:"مزدوج",
-triple:"ثلاثي",
-quad:"رباعي",
-family:"عائلي",
-suite:"جناح"
-}[r]||r)).join(" - ")],
-["الخدمات",h=>h.amenities.length ? h.amenities.join(" - "):"غير محددة"]
-];
-
-features.forEach(feature=>{
-
-rows+=`
-
-<tr>
-
-<th>${feature[0]}</th>
-
-${selected.map(h=>`
-<td>${feature[1](h)}</td>
-`).join("")}
-
-</tr>
-
-`;
-
-});
-
-box.innerHTML=`
-
-<div style="
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
-margin-bottom:15px;
-flex-wrap:wrap;
-">
-
-<h3>الفنادق المختارة</h3>
-
-<button
-class="btn btn-light"
-onclick="clearCompare()"
->
-مسح المقارنة
-</button>
-
-</div>
-
-<div class="compare-table-wrap">
-
-<table class="compare-table">
-
-<thead>
-
-<tr>
-
-<th>المعلومة</th>
-
-${selected.map(h=>`
-<th>${h.name}</th>
-`).join("")}
-
-</tr>
-
-</thead>
-
-<tbody>
-
-${rows}
-
-</tbody>
-
-</table>
-
-</div>
-
-`;
-
-}
-
-/* ================= MAPS PAGE ================= */
 
 function renderMaps(){
 
-const box=document.getElementById("mapsList");
+  const list =
+    document.getElementById(
+      "mapsList"
+    );
 
-if(!box) return;
 
-box.innerHTML=hotels.map(h=>`
+  if(!list){
 
-<div class="map-item">
+    return;
 
-<h3>${h.name}</h3>
+  }
 
-<p>
-📍 ${h.location}
-</p>
 
-<p>
-📏 ${
-h.distance!==null
-? h.distance+" كم"
-: "المسافة غير محددة"
-}
-</p>
+  const sorted =
+    [...hotels].sort((a,b)=>{
 
-<button
-class="btn btn-primary"
-onclick="openMaps('${h.id}')"
->
-📍 فتح على Google Maps
-</button>
+      if(a.distance === null){
 
-</div>
+        return 1;
 
-`).join("");
+      }
 
-}
 
-/* ================= RATING ================= */
+      if(b.distance === null){
 
-function renderRating(){
+        return -1;
 
-const box=document.getElementById("ratingContent");
+      }
 
-if(!box) return;
 
-const ratings=[5,4,3,2,1,0];
+      return a.distance - b.distance;
 
-box.innerHTML=ratings.map(star=>{
+    });
 
-const list=hotels.filter(h=>h.stars===star);
 
-if(!list.length) return "";
+  list.innerHTML =
+    sorted
+      .map(
+        h => `
 
-return `
+          <div class="map-card">
 
-<div style="margin-bottom:30px">
+            ${starsHTML(h.stars)}
 
-<div class="section-title" style="text-align:right;margin-bottom:15px">
+            <h3>
+              ${h.name}
+            </h3>
 
-<h2>
-${star ? "⭐ "+star+" نجوم":"غير محدد"}
-</h2>
+            <p>
+              📍 ${h.location}
+              <br>
+              📏 ${distanceText(h.distance)}
+            </p>
 
-<p>
-عدد الفنادق: ${list.length}
-</p>
+            <button
+              class="btn btn-primary"
+              onclick="openMap('${h.id}')"
+            >
+              فتح على Google Maps
+            </button>
 
-</div>
+          </div>
 
-<div class="hotels-grid">
-
-${list.map(hotelCard).join("")}
-
-</div>
-
-</div>
-
-`;
-
-}).join("");
+        `
+      )
+      .join("");
 
 }
 
-/* ================= TOAST ================= */
 
-let toastTimer;
+/* =====================================================
+   COMPARE
+===================================================== */
 
-function showToast(message){
+function getCompare(){
 
-const toast=document.getElementById("toast");
+  try{
 
-toast.textContent=message;
+    return JSON.parse(
+      localStorage.getItem(
+        "nusuk_compare"
+      ) || "[]"
+    );
 
-toast.classList.add("show");
+  }catch(e){
 
-clearTimeout(toastTimer);
+    return [];
 
-toastTimer=setTimeout(()=>{
-
-toast.classList.remove("show");
-
-},2500);
-
-}
-
-/* ================= TOP BUTTON ================= */
-
-window.addEventListener("scroll",()=>{
-
-const btn=document.getElementById("topBtn");
-
-if(window.scrollY>400){
-
-btn.style.display="block";
-
-}else{
-
-btn.style.display="none";
+  }
 
 }
 
-});
 
-/* ================= START ================= */
+function saveCompare(list){
 
-document.addEventListener("DOMContentLoaded",()=>{
+  localStorage.setItem(
+    "nusuk_compare",
+    JSON.stringify(list)
+  );
 
-renderHotels();
-renderMaps();
-renderCompare();
-renderRating();
-updateCompareBar();
 
-});
+  renderCompareBar();
+
+}
+
+
+function isCompared(id){
+
+  return getCompare()
+    .includes(id);
+
+}
+
+
+function toggleCompare(id){
+
+  let list =
+    getCompare();
+
+
+  if(list.includes(id)){
+
+    list =
+      list.filter(
+        x=>x !== id
+      );
+
+  }else{
+
+
+    if(list.length >= 3){
+
+      alert(
+        "يمكنك مقارنة 3 فنادق فقط."
+      );
+
+      return;
+
+    }
+
+
+    list.push(id);
+
+  }
+
+
+  saveCompare(list);
+
+  renderHotels();
+
+}
+
+
+function renderCompareBar(){
+
+  const bar =
+    document.getElementById(
+      "compareBar"
+    );
+
+
+  const text =
+    document.getElementById(
+      "compareBarText"
+    );
+
+
+  if(!bar || !text){
+
+    return;
+
+  }
+
+
+  const list =
+    getCompare();
+
+
+  if(!list.length){
+
+    bar.classList.remove(
+      "show"
+    );
+
+    return;
+
+  }
+
+
+  bar.classList.add(
+    "show"
+  );
+
+
+  text.textContent =
+    `تم اختيار ${list.length} من 3 فنادق للمقارنة`;
+
+}
+
+
+function openComparison(){
+
+  const list =
+    getCompare();
+
+
+  if(!list.length){
+
+    alert(
+      "اختار فندق واحد على الأقل للمقارنة."
+    );
+
+    return;
+
+  }
+
+
+  go("compare");
+
+}
+
+
+function clearCompare(){
+
+  localStorage.removeItem(
+    "nusuk_compare"
+  );
+
+
+  renderCompareBar();
+
+  renderHotels();
+
+  renderComparePage();
+
+}
+
+
+function renderComparePage(){
+
+  const box =
+    document.getElementById(
+      "compareContent"
+    );
+
+
+  if(!box){
+
+    return;
+
+  }
+
+
+  const list =
+    getCompare()
+      .map(getHotel)
+      .filter(Boolean);
+
+
+  if(!list.length){
+
+    box.innerHTML = `
+
+      <div class="compare-empty">
+
+        <h3
+          style="
+            color:var(--red);
+            margin-bottom:8px;
+          "
+        >
+          لم تختار فنادق للمقارنة
+        </h3>
+
+
+        <p>
+          ادخل على صفحة الفنادق واضغط
+          "قارن" على الفنادق التي تريد مقارنتها.
+        </p>
+
+
+        <button
+          class="btn btn-primary"
+          style="margin-top:15px"
+          onclick="go('hotels')"
+        >
+          الذهاب للفنادق
+        </button>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  box.innerHTML = `
+
+    <div class="compare-table-wrap">
+
+      <table class="compare-table">
+
+
+        <thead>
+
+          <tr>
+
+            <th>
+              البيان
+            </th>
+
+            ${
+              list
+                .map(
+                  h =>
+                    `<th>
+                      ${h.name}
+                    </th>`
+                )
+                .join("")
+            }
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+
+          <tr>
+
+            <td>
+              <strong>
+                التصنيف
+              </strong>
+            </td>
+
+            ${
+              list
+                .map(
+                  h =>
+                    `<td>
+                      ${
+                        h.stars
+                        ? "★".repeat(h.stars)
+                        : "غير محدد"
+                      }
+                    </td>`
+                )
+                .join("")
+            }
+
+          </tr>
+
+
+          <tr>
+
+            <td>
+              <strong>
+                الموقع
+              </strong>
+            </td>
+
+            ${
+              list
+                .map(
+                  h =>
+                    `<td>
+                      ${h.location}
+                    </td>`
+                )
+                .join("")
+            }
+
+          </tr>
+
+
+          <tr>
+
+            <td>
+              <strong>
+                المسافة
+              </strong>
+            </td>
+
+            ${
+              list
+                .map(
+                  h =>
+                    `<td>
+                      ${distanceText(h.distance)}
+                    </td>`
+                )
+                .join("")
+            }
+
+          </tr>
+
+
+          <tr>
+
+            <td>
+              <strong>
+                المواصلات
+              </strong>
+            </td>
+
+            ${
+              list
+                .map(
+                  h =>
+                    `<td>
+                      ${
+                        h.transport
+                        ? "متوفرة"
+                        : "غير متوفرة"
+                      }
+                    </td>`
+                )
+                .join("")
+            }
+
+          </tr>
+
+
+          <tr>
+
+            <td>
+              <strong>
+                الغرف
+              </strong>
+            </td>
+
+            ${
+              list
+                .map(
+                  h =>
+                    `<td>
+                      ${
+                        h.rooms
+                          .map(
+                            r =>
+                              roomNames[r]
+                          )
+                          .join(" - ")
+                      }
+                    </td>`
+                )
+                .join("")
+            }
+
+          </tr>
+
+
+          <tr>
+
+            <td>
+              <strong>
+                المميزات
+              </strong>
+            </td>
+
+            ${
+              list
+                .map(
+                  h =>
+                    `<td>
+                      ${
+                        h.amenities.length
+                        ?
+                        h.amenities
+                          .map(
+                            a =>
+                              amenityNames[a]
+                          )
+                          .join(" - ")
+                        :
+                        "لا توجد بيانات"
+                      }
+                    </td>`
+                )
+                .join("")
+            }
+
+          </tr>
+
+
+          <tr>
+
+            <td>
+              <strong>
+                التواصل
+              </strong>
+            </td>
+
+            ${
+              list
+                .map(
+                  h =>
+                    `<td>
+
+                      <button
+                        class="btn btn-primary"
+                        onclick="hotelWhatsApp('${h.id}')"
+                      >
+                        واتساب
+                      </button>
+
+                    </td>`
+                )
+                .join("")
+            }
+
+          </tr>
+
+
+        </tbody>
+
+
+      </table>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   RATINGS
+===================================================== */
+
+function renderRatings(){
+
+  const box =
+    document.getElementById(
+      "ratingsContent"
+    );
+
+
+  if(!box){
+
+    return;
+
+  }
+
+
+  const groups =
+    [5,4,3,1,0];
+
+
+  box.innerHTML = `
+
+    <div class="rating-grid">
+
+      ${
+        groups
+          .map(stars=>{
+
+            const list =
+              hotels.filter(
+                h =>
+                  h.stars === stars
+              );
+
+
+            const title =
+              stars
+              ? `${stars} نجوم`
+              : "غير محدد";
+
+
+            const visual =
+              stars
+              ? "★".repeat(stars)
+              : "—";
+
+
+            return `
+
+              <div class="rating-card">
+
+                <h3>
+                  ${title}
+                </h3>
+
+                <div class="big-stars">
+                  ${visual}
+                </div>
+
+                <ul>
+
+                  ${
+                    list.length
+
+                    ?
+
+                      list
+                        .map(
+                          h =>
+                            `<li>
+                              • ${h.name}
+                            </li>`
+                        )
+                        .join("")
+
+                    :
+
+                      `<li>
+                        لا توجد فنادق
+                      </li>`
+                  }
+
+                </ul>
+
+              </div>
+
+            `;
+
+          })
+          .join("")
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   HASH
+===================================================== */
+
+function loadFromHash(){
+
+  const hash =
+    location.hash.replace(
+      "#",
+      ""
+    );
+
+
+  if(!hash){
+
+    go("home");
+
+    return;
+
+  }
+
+
+  if(
+    hash.startsWith(
+      "details="
+    )
+  ){
+
+    const id =
+      hash.split("=")[1];
+
+
+    currentPage =
+      "details";
+
+
+    document
+      .querySelectorAll(".page")
+      .forEach(
+        p =>
+          p.classList.remove(
+            "active"
+          )
+      );
+
+
+    document
+      .getElementById("details")
+      .classList.add("active");
+
+
+    renderDetails(id);
+
+
+    window.scrollTo(
+      0,
+      0
+    );
+
+
+    return;
+
+  }
+
+
+  const allowed = [
+
+    "home",
+    "hotels",
+    "maps",
+    "compare",
+    "ratings"
+
+  ];
+
+
+  if(
+    allowed.includes(hash)
+  ){
+
+    currentPage =
+      hash;
+
+
+    document
+      .querySelectorAll(".page")
+      .forEach(
+        p =>
+          p.classList.remove(
+            "active"
+          )
+      );
+
+
+    document
+      .getElementById(hash)
+      .classList.add("active");
+
+
+    if(hash === "hotels"){
+
+      renderHotels();
+
+    }
+
+
+    if(hash === "maps"){
+
+      renderMaps();
+
+    }
+
+
+    if(hash === "compare"){
+
+      renderComparePage();
+
+    }
+
+
+    if(hash === "ratings"){
+
+      renderRatings();
+
+    }
+
+
+    window.scrollTo(
+      0,
+      0
+    );
+
+
+  }else{
+
+    go("home");
+
+  }
+
+}
+
+
+/* =====================================================
+   CLICK OUTSIDE SEARCH
+===================================================== */
+
+document.addEventListener(
+  "click",
+  function(e){
+
+    const wrap =
+      document.querySelector(
+        ".search-wrap"
+      );
+
+
+    const suggestions =
+      document.getElementById(
+        "suggestions"
+      );
+
+
+    if(
+      suggestions &&
+      wrap &&
+      !wrap.contains(e.target)
+    ){
+
+      suggestions.style.display =
+        "none";
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   TOP BUTTON
+===================================================== */
+
+window.addEventListener(
+  "scroll",
+  function(){
+
+    const btn =
+      document.getElementById(
+        "topBtn"
+      );
+
+
+    if(window.scrollY > 400){
+
+      btn.style.display =
+        "block";
+
+    }else{
+
+      btn.style.display =
+        "none";
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   START
+===================================================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    initFilters();
+
+    renderMaps();
+
+    renderRatings();
+
+    renderCompareBar();
+
+    loadFromHash();
+
+  }
+);
 
 </script>
 
