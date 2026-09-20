@@ -384,55 +384,66 @@ a{
 /* ================= HOTEL PAGE ================= */
 
 .page-head{
-  background:linear-gradient(135deg,#6d0d13,#a71b25);
+  position:relative;
+  min-height:300px;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
   color:white;
-  padding:55px 0;
+  background:#6d0d13;
+  isolation:isolate;
+}
+
+.page-head::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.78),
+      rgba(0,0,0,.35),
+      rgba(0,0,0,.62)
+    ),
+    url("file_0000000035dc820caee9fa52357bb9d4.png");
+  background-size:cover;
+  background-position:center;
+  z-index:-2;
+}
+
+.page-head::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    0deg,
+    rgba(70,0,5,.65),
+    transparent 70%
+  );
+  z-index:-1;
+}
+
+.page-head .container{
+  position:relative;
+  z-index:2;
+  padding-top:45px;
+  padding-bottom:45px;
 }
 
 .page-head h1{
-  font-size:34px;
-  margin-bottom:10px;
+  font-size:38px;
+  margin-bottom:12px;
+  text-shadow:0 3px 12px rgba(0,0,0,.35);
 }
 
 .page-head p{
-  color:#f5dddd;
+  color:#f8eaea;
   line-height:1.8;
+  font-size:14px;
 }
 
 .hotel-showcase{
-  margin:35px 0;
-  border-radius:24px;
-  overflow:hidden;
-  background:white;
-  border:1px solid var(--border);
-  box-shadow:var(--shadow);
-}
-
-.hotel-showcase img{
-  display:block;
-  width:100%;
-  height:auto;
-  max-height:460px;
-  object-fit:contain;
-  background:#eee;
-}
-
-.hotel-showcase-caption{
-  padding:18px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-}
-
-.hotel-showcase-caption strong{
-  color:var(--red);
-  font-size:17px;
-}
-
-.hotel-showcase-caption span{
-  color:#777;
-  font-size:13px;
+  display:none;
 }
 
 /* ================= FILTERS ================= */
@@ -441,32 +452,36 @@ a{
   background:white;
   border:1px solid var(--border);
   border-radius:22px;
-  padding:20px;
+  padding:16px;
   box-shadow:var(--shadow);
   margin-bottom:25px;
 }
 
 .filter-grid{
   display:grid;
-  grid-template-columns:2fr repeat(5,1fr);
-  gap:10px;
+  grid-template-columns:
+    minmax(190px,2fr)
+    repeat(5,minmax(120px,1fr));
+  gap:8px;
+  align-items:center;
 }
 
-.input-group{
+.search-wrap{
   position:relative;
 }
 
 .input,
 .select{
   width:100%;
-  height:48px;
+  height:46px;
   border:1px solid #ddd5cc;
   background:#fff;
-  border-radius:12px;
-  padding:0 14px;
+  border-radius:11px;
+  padding:0 12px;
   outline:none;
-  font-size:13px;
+  font-size:12px;
   color:#222;
+  min-width:0;
 }
 
 .input:focus,
@@ -475,14 +490,15 @@ a{
   box-shadow:0 0 0 3px rgba(151,21,29,.08);
 }
 
-.search-wrap{
-  position:relative;
+.search-wrap .input{
+  border-color:#d9c7c8;
+  background:#fffdfd;
 }
 
 .suggestions{
   display:none;
   position:absolute;
-  top:54px;
+  top:52px;
   right:0;
   left:0;
   background:white;
@@ -523,30 +539,30 @@ a{
   justify-content:space-between;
   align-items:center;
   gap:10px;
-  margin-top:14px;
+  margin-top:12px;
   flex-wrap:wrap;
 }
 
 .results-count{
   color:#777;
-  font-size:13px;
+  font-size:12px;
 }
 
 .clear-btn{
   border:0;
   background:#f7eeee;
   color:var(--red);
-  padding:10px 14px;
+  padding:9px 13px;
   border-radius:10px;
-  font-size:12px;
+  font-size:11px;
 }
 
 /* ================= HOTELS GRID ================= */
 
 .hotels-grid{
   display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:15px;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
 }
 
 .hotel-card{
@@ -971,6 +987,18 @@ a{
   list-style:none;
 }
 
+.footer ul button{
+  border:0;
+  background:none;
+  color:#aaa;
+  font:inherit;
+  cursor:pointer;
+}
+
+.footer ul button:hover{
+  color:white;
+}
+
 .footer-bottom{
   border-top:1px solid #333;
   margin-top:30px;
@@ -1040,14 +1068,46 @@ a{
 
 /* ================= RESPONSIVE ================= */
 
-@media(max-width:1050px){
+@media(max-width:1100px){
+
+  .filter-grid{
+    grid-template-columns:
+      1.7fr
+      repeat(5,1fr);
+    gap:7px;
+  }
+
+  .input,
+  .select{
+    font-size:11px;
+    padding:0 9px;
+  }
+
+  .hotels-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+
+}
+
+@media(max-width:850px){
+
   .filter-grid{
     grid-template-columns:repeat(3,1fr);
   }
 
-  .hotels-grid{
-    grid-template-columns:repeat(3,1fr);
+  .filter-grid .search-wrap{
+    grid-column:1/-1;
   }
+
+  .hotels-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:10px;
+  }
+
+  .hotel-photo{
+    height:125px;
+  }
+
 }
 
 @media(max-width:760px){
@@ -1121,42 +1181,74 @@ a{
     grid-template-columns:1fr;
   }
 
+  /* الفلاتر على الموبايل بشكل مرتب */
   .filter-grid{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
   }
 
   .filter-grid .search-wrap{
     grid-column:1/-1;
   }
 
+  .input,
+  .select{
+    height:44px;
+    font-size:11px;
+  }
+
+  /* 3 فنادق في الصف */
   .hotels-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:9px;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:8px;
   }
 
   .hotel-photo{
-    height:110px;
+    height:105px;
   }
 
   .hotel-body{
-    padding:9px;
+    padding:8px;
   }
 
   .hotel-name{
-    font-size:12px;
+    font-size:11px;
+    line-height:1.45;
+  }
+
+  .stars{
+    font-size:9px;
+    letter-spacing:0;
+    margin-bottom:6px;
   }
 
   .meta{
-    font-size:10px;
+    font-size:8.5px;
+    line-height:1.7;
   }
 
   .card-buttons{
+    grid-template-columns:1fr;
     gap:5px;
+    margin-top:9px;
   }
 
   .card-btn{
-    font-size:9px;
-    min-height:34px;
+    font-size:8.5px;
+    min-height:32px;
+    padding:6px 3px;
+  }
+
+  .page-head{
+    min-height:250px;
+  }
+
+  .page-head h1{
+    font-size:30px;
+  }
+
+  .page-head p{
+    font-size:12px;
   }
 
   .details-top{
@@ -1220,12 +1312,13 @@ a{
     right:10px;
     bottom:80px;
   }
+
 }
 
 @media(max-width:430px){
 
   .container{
-    padding:0 12px;
+    padding:0 10px;
   }
 
   .hero h1{
@@ -1253,42 +1346,108 @@ a{
     font-size:10px;
   }
 
+  /* الفلاتر تفضل جنب بعض بدل ما تاخد مساحة كبيرة */
+  .filter-panel{
+    padding:10px;
+    border-radius:17px;
+  }
+
   .filter-grid{
-    grid-template-columns:1fr;
+    grid-template-columns:repeat(2,1fr);
+    gap:6px;
   }
 
   .filter-grid .search-wrap{
-    grid-column:auto;
+    grid-column:1/-1;
   }
 
-  .hotel-showcase-caption{
-    flex-direction:column;
-    align-items:flex-start;
+  .input,
+  .select{
+    height:42px;
+    font-size:10px;
+    padding:0 7px;
+    border-radius:9px;
   }
 
   .hotel-photo{
-    height:105px;
+    height:90px;
+  }
+
+  .hotel-photo::before{
+    font-size:30px;
+  }
+
+  .hotel-photo-label{
+    bottom:4px;
+    right:4px;
+    left:4px;
+    padding:4px;
+    font-size:7px;
   }
 
   .hotel-name{
-    font-size:11px;
-  }
-
-  .stars{
     font-size:10px;
   }
 
-  .hotel-body{
-    padding:8px;
+  .stars{
+    font-size:8px;
   }
 
-  .card-buttons{
-    grid-template-columns:1fr;
+  .meta{
+    font-size:7.5px;
+  }
+
+  .hotel-body{
+    padding:7px 6px;
+  }
+
+  .card-btn{
+    font-size:8px;
+    min-height:30px;
+  }
+
+  .filter-bottom{
+    margin-top:9px;
+  }
+
+  .results-count{
+    font-size:10px;
+  }
+
+  .clear-btn{
+    font-size:9px;
+    padding:8px 9px;
   }
 
   .details-content{
     padding:15px;
   }
+
+}
+
+/* شاشة صغيرة جدًا */
+@media(max-width:350px){
+
+  .hotels-grid{
+    gap:6px;
+  }
+
+  .hotel-photo{
+    height:82px;
+  }
+
+  .hotel-name{
+    font-size:9px;
+  }
+
+  .meta{
+    font-size:7px;
+  }
+
+  .card-btn{
+    font-size:7px;
+  }
+
 }
 </style>
 </head>
@@ -1304,6 +1463,7 @@ a{
 
     <div class="brand">
       <img src="IMG-20260828-WA0029.jpg" alt="NUSUK HOTEL BOOKING">
+
       <div class="brand-text">
         <strong>NUSUK HOTEL BOOKING</strong>
         <span>حجوزات فنادق مكة والمدينة</span>
@@ -1321,6 +1481,7 @@ a{
   </div>
 </header>
 
+
 <!-- ================= HOME ================= -->
 
 <main id="home" class="page active">
@@ -1328,17 +1489,21 @@ a{
   <section class="hero">
 
     <div class="hero-bg">
-      <img src="file_0000000035dc820caee9fa52357bb9d4.png" alt="NUSUK HOTEL BOOKING">
+      <img
+        src="file_0000000035dc820caee9fa52357bb9d4.png"
+        alt="NUSUK HOTEL BOOKING">
     </div>
 
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
+
       <div class="hero-box">
 
-        <img class="hero-logo"
-             src="IMG-20260828-WA0029.jpg"
-             alt="NUSUK HOTEL BOOKING">
+        <img
+          class="hero-logo"
+          src="IMG-20260828-WA0029.jpg"
+          alt="NUSUK HOTEL BOOKING">
 
         <h1>
           احجز فندقك في
@@ -1352,82 +1517,144 @@ a{
         </p>
 
         <div class="hero-actions">
-          <button class="btn btn-primary" onclick="go('hotels')">
+
+          <button
+            class="btn btn-primary"
+            onclick="go('hotels')"
+          >
             🏨 استعرض الفنادق
           </button>
 
-          <button class="btn btn-light" onclick="go('maps')">
+          <button
+            class="btn btn-light"
+            onclick="go('maps')"
+          >
             📍 مواقع الفنادق
           </button>
+
         </div>
 
       </div>
+
     </div>
 
   </section>
 
 
   <section class="container">
+
     <div class="quick-grid">
 
       <button class="quick-card" onclick="go('hotels')">
+
         <div class="quick-icon">🏨</div>
+
         <h3>الفنادق</h3>
-        <p>استعرض الفنادق وابحث بالاسم والموقع.</p>
+
+        <p>
+          استعرض الفنادق وابحث بالاسم والموقع.
+        </p>
+
       </button>
+
 
       <button class="quick-card" onclick="go('maps')">
+
         <div class="quick-icon">📍</div>
+
         <h3>مواقع الفنادق</h3>
-        <p>شوف الفنادق مرتبة حسب المسافة.</p>
+
+        <p>
+          شوف الفنادق مرتبة حسب المسافة.
+        </p>
+
       </button>
+
 
       <button class="quick-card" onclick="go('compare')">
+
         <div class="quick-icon">⚖️</div>
+
         <h3>مقارنة الفنادق</h3>
-        <p>اختار حتى 3 فنادق وقارن بينهم.</p>
+
+        <p>
+          اختار حتى 3 فنادق وقارن بينهم.
+        </p>
+
       </button>
 
+
       <button class="quick-card" onclick="go('ratings')">
+
         <div class="quick-icon">⭐</div>
+
         <h3>التصنيف</h3>
-        <p>اعرف تصنيف كل فندق بالنجوم.</p>
+
+        <p>
+          اعرف تصنيف كل فندق بالنجوم.
+        </p>
+
       </button>
 
     </div>
+
   </section>
 
 
   <section class="section">
+
     <div class="container">
 
       <div class="section-title">
-        <span class="eyebrow">NUSUK HOTEL BOOKING</span>
-        <h2>اختار فندقك بسهولة</h2>
-        <p>كل المعلومات الأساسية قدامك في مكان واحد.</p>
+
+        <span class="eyebrow">
+          NUSUK HOTEL BOOKING
+        </span>
+
+        <h2>
+          اختار فندقك بسهولة
+        </h2>
+
+        <p>
+          كل المعلومات الأساسية قدامك في مكان واحد.
+        </p>
+
       </div>
+
 
       <div class="info-grid">
 
         <div class="info-card">
-          <h3>🔎 ابحث قبل الحجز</h3>
+
+          <h3>
+            🔎 ابحث قبل الحجز
+          </h3>
+
           <p>
             تقدر تبحث باسم الفندق، وتشوف الموقع والتصنيف
             والغرف والخدمات ووسيلة الانتقال للحرم.
           </p>
+
         </div>
 
+
         <div class="info-card">
-          <h3>⚖️ قارن قبل ما تختار</h3>
+
+          <h3>
+            ⚖️ قارن قبل ما تختار
+          </h3>
+
           <p>
             اختار فندقين أو ثلاثة، وهيظهر لك زر المقارنة
             علشان تشوف الفروق بينهم بشكل واضح.
           </p>
+
         </div>
 
       </div>
 
     </div>
+
   </section>
 
 </main>
@@ -1437,35 +1664,34 @@ a{
 
 <section id="hotels" class="page">
 
+  <!-- الغلاف أصبح هنا فوق خالص وخلف الكلام -->
+
   <div class="page-head">
+
     <div class="container">
-      <h1>🏨 الفنادق</h1>
+
+      <h1>
+        🏨 الفنادق
+      </h1>
+
       <p>
         ابحث باسم الفندق أو استخدم الفلاتر للوصول للفندق المناسب.
       </p>
+
     </div>
+
   </div>
+
 
   <div class="container section">
 
-    <!-- صورة داخلية بنسبة طبيعية -->
-    <div class="hotel-showcase">
 
-      <img
-        src="file_0000000035dc820caee9fa52357bb9d4.png"
-        alt="NUSUK HOTEL BOOKING">
-
-      <div class="hotel-showcase-caption">
-        <strong>اختار الفندق المناسب ليك</strong>
-        <span>تصفح الفنادق وقارن بينها قبل التواصل للحجز</span>
-      </div>
-
-    </div>
-
+    <!-- ================= FILTERS ================= -->
 
     <div class="filter-panel">
 
       <div class="filter-grid">
+
 
         <div class="search-wrap">
 
@@ -1479,51 +1705,143 @@ a{
             oninput="handleHotelSearch()"
           >
 
-          <div id="hotelSuggestions" class="suggestions"></div>
+          <div
+            id="hotelSuggestions"
+            class="suggestions">
+          </div>
 
         </div>
 
 
-        <select id="locationFilter" class="select" onchange="renderHotels()">
-          <option value="">كل المواقع</option>
+        <select
+          id="locationFilter"
+          class="select"
+          onchange="renderHotels()">
+
+          <option value="">
+            كل المواقع
+          </option>
+
         </select>
 
 
-        <select id="starsFilter" class="select" onchange="renderHotels()">
-          <option value="">كل التصنيفات</option>
-          <option value="5">5 نجوم</option>
-          <option value="4">4 نجوم</option>
-          <option value="3">3 نجوم</option>
-          <option value="2">2 نجوم</option>
-          <option value="1">نجمة واحدة</option>
-          <option value="0">غير محدد</option>
+        <select
+          id="starsFilter"
+          class="select"
+          onchange="renderHotels()">
+
+          <option value="">
+            كل التصنيفات
+          </option>
+
+          <option value="5">
+            5 نجوم
+          </option>
+
+          <option value="4">
+            4 نجوم
+          </option>
+
+          <option value="3">
+            3 نجوم
+          </option>
+
+          <option value="2">
+            2 نجوم
+          </option>
+
+          <option value="1">
+            نجمة واحدة
+          </option>
+
+          <option value="0">
+            غير محدد
+          </option>
+
         </select>
 
 
-        <select id="distanceFilter" class="select" onchange="renderHotels()">
-          <option value="">كل المسافات</option>
-          <option value="1">حتى 1 كم</option>
-          <option value="2">حتى 2 كم</option>
-          <option value="3">حتى 3 كم</option>
-          <option value="5">حتى 5 كم</option>
-          <option value="unknown">غير محددة</option>
+        <select
+          id="distanceFilter"
+          class="select"
+          onchange="renderHotels()">
+
+          <option value="">
+            كل المسافات
+          </option>
+
+          <option value="1">
+            حتى 1 كم
+          </option>
+
+          <option value="2">
+            حتى 2 كم
+          </option>
+
+          <option value="3">
+            حتى 3 كم
+          </option>
+
+          <option value="5">
+            حتى 5 كم
+          </option>
+
+          <option value="unknown">
+            غير محددة
+          </option>
+
         </select>
 
 
-        <select id="transportFilter" class="select" onchange="renderHotels()">
-          <option value="">المواصلات</option>
-          <option value="yes">يوجد نقل للحرم</option>
-          <option value="no">لا يوجد نقل</option>
+        <select
+          id="transportFilter"
+          class="select"
+          onchange="renderHotels()">
+
+          <option value="">
+            المواصلات
+          </option>
+
+          <option value="yes">
+            يوجد نقل للحرم
+          </option>
+
+          <option value="no">
+            لا يوجد نقل
+          </option>
+
         </select>
 
 
-        <select id="roomFilter" class="select" onchange="renderHotels()">
-          <option value="">كل أنواع الغرف</option>
-          <option value="double">مزدوجة</option>
-          <option value="triple">ثلاثية</option>
-          <option value="quad">رباعية</option>
-          <option value="family">عائلية</option>
-          <option value="suite">جناح</option>
+        <select
+          id="roomFilter"
+          class="select"
+          onchange="renderHotels()">
+
+          <option value="">
+            كل أنواع الغرف
+          </option>
+
+          <option value="double">
+            مزدوجة
+          </option>
+
+          <option value="triple">
+            ثلاثية
+          </option>
+
+          <option value="quad">
+            رباعية
+          </option>
+
+          <option value="family">
+            عائلية
+          </option>
+
+          <option value="suite">
+            جناح
+          </option>
+
         </select>
 
       </div>
@@ -1531,12 +1849,21 @@ a{
 
       <div class="filter-bottom">
 
-        <span id="resultsCount" class="results-count">
+        <span
+          id="resultsCount"
+          class="results-count">
+
           جاري تحميل الفنادق...
+
         </span>
 
-        <button class="clear-btn" onclick="clearFilters()">
+
+        <button
+          class="clear-btn"
+          onclick="clearFilters()">
+
           ✕ مسح كل الفلاتر
+
         </button>
 
       </div>
@@ -1544,7 +1871,12 @@ a{
     </div>
 
 
-    <div id="hotelsGrid" class="hotels-grid"></div>
+    <!-- ================= HOTELS GRID ================= -->
+
+    <div
+      id="hotelsGrid"
+      class="hotels-grid">
+    </div>
 
   </div>
 
@@ -1556,23 +1888,45 @@ a{
 <section id="details" class="page">
 
   <div class="page-head">
+
     <div class="container">
-      <h1>تفاصيل الفندق</h1>
-      <p>كل المعلومات الأساسية الخاصة بالفندق.</p>
+
+      <h1>
+        تفاصيل الفندق
+      </h1>
+
+      <p>
+        كل المعلومات الأساسية الخاصة بالفندق.
+      </p>
+
     </div>
+
   </div>
+
 
   <div class="container section">
 
     <div class="compare-actions">
-      <button class="btn btn-outline" onclick="goBack()">
+
+      <button
+        class="btn btn-outline"
+        onclick="goBack()">
+
         ← رجوع للصفحة السابقة
+
       </button>
 
-      <button class="btn btn-dark" onclick="go('hotels')">
+
+      <button
+        class="btn btn-dark"
+        onclick="go('hotels')">
+
         🏨 رجوع للفنادق
+
       </button>
+
     </div>
+
 
     <div id="detailsContainer"></div>
 
@@ -1586,25 +1940,50 @@ a{
 <section id="maps" class="page">
 
   <div class="page-head">
+
     <div class="container">
-      <h1>📍 مواقع الفنادق</h1>
-      <p>الفنادق مرتبة من الأقرب إلى الأبعد حسب المسافة المسجلة.</p>
+
+      <h1>
+        📍 مواقع الفنادق
+      </h1>
+
+      <p>
+        الفنادق مرتبة من الأقرب إلى الأبعد حسب المسافة المسجلة.
+      </p>
+
     </div>
+
   </div>
+
 
   <div class="container section">
 
     <div class="compare-actions">
-      <button class="btn btn-outline" onclick="goBack()">
+
+      <button
+        class="btn btn-outline"
+        onclick="goBack()">
+
         ← رجوع
+
       </button>
 
-      <button class="btn btn-dark" onclick="go('hotels')">
+
+      <button
+        class="btn btn-dark"
+        onclick="go('hotels')">
+
         🏨 كل الفنادق
+
       </button>
+
     </div>
 
-    <div id="mapsList" class="map-list"></div>
+
+    <div
+      id="mapsList"
+      class="map-list">
+    </div>
 
   </div>
 
@@ -1616,29 +1995,54 @@ a{
 <section id="compare" class="page">
 
   <div class="page-head">
+
     <div class="container">
-      <h1>⚖️ مقارنة الفنادق</h1>
-      <p>قارن بين فندقين أو ثلاثة في جدول واحد.</p>
+
+      <h1>
+        ⚖️ مقارنة الفنادق
+      </h1>
+
+      <p>
+        قارن بين فندقين أو ثلاثة في جدول واحد.
+      </p>
+
     </div>
+
   </div>
+
 
   <div class="container section">
 
     <div class="compare-actions">
 
-      <button class="btn btn-outline" onclick="goBack()">
+      <button
+        class="btn btn-outline"
+        onclick="goBack()">
+
         ← رجوع
+
       </button>
 
-      <button class="btn btn-dark" onclick="go('hotels')">
+
+      <button
+        class="btn btn-dark"
+        onclick="go('hotels')">
+
         🏨 اختيار فنادق أخرى
+
       </button>
 
-      <button class="btn btn-danger" onclick="clearCompare()">
+
+      <button
+        class="btn btn-danger"
+        onclick="clearCompare()">
+
         ✕ مسح المقارنة
+
       </button>
 
     </div>
+
 
     <div id="compareContainer"></div>
 
@@ -1652,15 +2056,28 @@ a{
 <section id="ratings" class="page">
 
   <div class="page-head">
+
     <div class="container">
-      <h1>⭐ تصنيف الفنادق</h1>
-      <p>التصنيف المعروض هو تصنيف النجوم المسجل للفندق فقط.</p>
+
+      <h1>
+        ⭐ تصنيف الفنادق
+      </h1>
+
+      <p>
+        التصنيف المعروض هو تصنيف النجوم المسجل للفندق فقط.
+      </p>
+
     </div>
+
   </div>
+
 
   <div class="container section">
 
-    <div id="ratingsGrid" class="rating-grid"></div>
+    <div
+      id="ratingsGrid"
+      class="rating-grid">
+    </div>
 
   </div>
 
@@ -1676,33 +2093,79 @@ a{
     <div class="footer-grid">
 
       <div>
-        <h3>NUSUK HOTEL BOOKING</h3>
+
+        <h3>
+          NUSUK HOTEL BOOKING
+        </h3>
+
         <p>
           حجوزات فنادق مكة والمدينة بطريقة بسيطة وواضحة.
           استعرض الفندق، اعرف التفاصيل، وقارن قبل التواصل.
         </p>
+
       </div>
 
+
       <div>
-        <h3>روابط</h3>
+
+        <h3>
+          روابط
+        </h3>
+
         <ul>
-          <li><button onclick="go('home')">الرئيسية</button></li>
-          <li><button onclick="go('hotels')">الفنادق</button></li>
-          <li><button onclick="go('maps')">مواقع الفنادق</button></li>
-          <li><button onclick="go('compare')">المقارنة</button></li>
+
+          <li>
+            <button onclick="go('home')">
+              الرئيسية
+            </button>
+          </li>
+
+          <li>
+            <button onclick="go('hotels')">
+              الفنادق
+            </button>
+          </li>
+
+          <li>
+            <button onclick="go('maps')">
+              مواقع الفنادق
+            </button>
+          </li>
+
+          <li>
+            <button onclick="go('compare')">
+              المقارنة
+            </button>
+          </li>
+
         </ul>
+
       </div>
 
+
       <div>
-        <h3>التواصل</h3>
-        <p>mohammed kassem</p>
-        <p>01032321748</p>
+
+        <h3>
+          التواصل
+        </h3>
+
+        <p>
+          mohammed kassem
+        </p>
+
+        <p>
+          01032321748
+        </p>
+
       </div>
 
     </div>
 
+
     <div class="footer-bottom">
+
       © 2026 NUSUK HOTEL BOOKING — mohammed kassem
+
     </div>
 
   </div>
@@ -1712,26 +2175,46 @@ a{
 
 <!-- ================= COMPARE BAR ================= -->
 
-<div id="compareBar" class="compare-bar">
+<div
+  id="compareBar"
+  class="compare-bar">
 
   <div class="compare-bar-info">
-    <strong>⚖️ المقارنة</strong>
-    <span id="compareStatus">اختار الفنادق للمقارنة</span>
+
+    <strong>
+      ⚖️ المقارنة
+    </strong>
+
+    <span id="compareStatus">
+      اختار الفنادق للمقارنة
+    </span>
+
   </div>
 
-  <div id="selectedHotels" class="selected-hotels"></div>
+
+  <div
+    id="selectedHotels"
+    class="selected-hotels">
+  </div>
+
 
   <button
     id="compareNowBtn"
     class="compare-now"
     onclick="openComparison()"
-    disabled
-  >
+    disabled>
+
     عرض المقارنة
+
   </button>
 
-  <button class="compare-clear" onclick="clearCompare()">
+
+  <button
+    class="compare-clear"
+    onclick="clearCompare()">
+
     مسح
+
   </button>
 
 </div>
@@ -1743,18 +2226,24 @@ a{
   class="whatsapp"
   href="https://wa.me/201032321748"
   target="_blank"
-  aria-label="واتساب"
->
+  aria-label="واتساب">
 
-<svg viewBox="0 0 32 32">
-  <path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.8 6.4L3.1 29l6.8-1.7c1.8 1 3.9 1.5 6.1 1.5 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.4c-2 0-4-.5-5.7-1.5l-.4-.2-4 .9 1-3.8-.3-.4c-1.1-1.8-1.7-3.8-1.7-5.9C4.9 9.8 9.9 4.8 16 4.8s11.1 5 11.1 11.1-5 11.1-11.1 11.1zm6.1-8.3c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.3-.6.1-1.7-.8-2.8-1.5-3.9-3.4-.3-.5.3-.5.8-1.7.1-.2.1-.4 0-.6-.1-.2-.7-1.8-1-2.5-.3-.7-.5-.6-.7-.6h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.1 3.1 1.3 3.3c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.7.9 3.7.8.6-.1 1.9-.8 2.1-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.3z"/>
-</svg>
+  <svg viewBox="0 0 32 32">
+
+    <path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.8 6.4L3.1 29l6.8-1.7c1.8 1 3.9 1.5 6.1 1.5 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.4c-2 0-4-.5-5.7-1.5l-.4-.2-4 .9 1-3.8-.3-.4c-1.1-1.8-1.7-3.8-1.7-5.9C4.9 9.8 9.9 4.8 16 4.8s11.1 5 11.1 11.1-5 11.1-11.1 11.1zm6.1-8.3c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.3-.6.1-1.7-.8-2.8-1.5-3.9-3.4-.3-.5.3-.5.8-1.7.1-.2.1-.4 0-.6-.1-.2-.7-1.8-1-2.5-.3-.7-.5-.6-.7-.6h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.1 3.1 1.3 3.3c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.7.9 3.7.8.6-.1 1.9-.8 2.1-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.3z"/>
+
+  </svg>
 
 </a>
 
 
-<button id="topBtn" class="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+<button
+  id="topBtn"
+  class="top-btn"
+  onclick="window.scrollTo({top:0,behavior:'smooth'})">
+
   ↑
+
 </button>
 
 
@@ -2119,7 +2608,8 @@ function showPage(page){
     el.classList.remove("active");
   });
 
-  const target = document.getElementById(page);
+  const target =
+    document.getElementById(page);
 
   if(target){
     target.classList.add("active");
@@ -2459,36 +2949,57 @@ function hotelCardHTML(h){
 
       </div>
 
+
       <div class="hotel-body">
 
         <h3 class="hotel-name">
           ${h.name}
         </h3>
 
+
         <div class="stars">
           ${starsHTML(h.stars)}
         </div>
 
+
         <div class="meta">
+
           📍 ${h.location}<br>
+
           🕋 ${distanceText(h.distance)}<br>
-          🚌 ${h.transport ? "يوجد نقل للحرم" : "لا يوجد نقل مسجل"}
+
+          🚌 ${
+            h.transport
+            ? "يوجد نقل للحرم"
+            : "لا يوجد نقل مسجل"
+          }
+
         </div>
+
 
         <div class="card-buttons">
 
           <button
             class="card-btn details-btn"
-            onclick="go('details','${h.id}')"
-          >
+            onclick="go('details','${h.id}')">
+
             التفاصيل
+
           </button>
 
+
           <button
-            class="card-btn compare-btn ${selected ? "selected" : ""}"
-            onclick="toggleCompare('${h.id}')"
-          >
-            ${selected ? "✓ تمت الإضافة" : "⚖️ مقارنة"}
+            class="card-btn compare-btn ${
+              selected ? "selected" : ""
+            }"
+            onclick="toggleCompare('${h.id}')">
+
+            ${
+              selected
+              ? "✓ تمت الإضافة"
+              : "⚖️ مقارنة"
+            }
+
           </button>
 
         </div>
@@ -2538,8 +3049,13 @@ function renderDetails(id){
 
     box.innerHTML = `
       <div class="empty">
-        <strong>الفندق غير موجود</strong>
+
+        <strong>
+          الفندق غير موجود
+        </strong>
+
         ارجع لقائمة الفنادق واختار الفندق مرة أخرى.
+
       </div>
     `;
 
@@ -2550,7 +3066,9 @@ function renderDetails(id){
 
   const rooms =
     h.rooms.map(r =>
-      `<span class="room-tag">${roomNames[r]}</span>`
+      `<span class="room-tag">
+        ${roomNames[r]}
+      </span>`
     ).join("");
 
 
@@ -2558,10 +3076,14 @@ function renderDetails(id){
     h.amenities.length
     ?
       h.amenities.map(a =>
-        `<div class="amenity">${amenityNames[a]}</div>`
+        `<div class="amenity">
+          ${amenityNames[a]}
+        </div>`
       ).join("")
     :
-      `<div class="amenity">لا توجد خدمات مسجلة</div>`;
+      `<div class="amenity">
+        لا توجد خدمات مسجلة
+      </div>`;
 
 
   box.innerHTML = `
@@ -2572,7 +3094,9 @@ function renderDetails(id){
 
         <div class="details-title">
 
-          <h2>${h.name}</h2>
+          <h2>
+            ${h.name}
+          </h2>
 
           <div class="stars">
             ${starsHTML(h.stars)}
@@ -2585,13 +3109,17 @@ function renderDetails(id){
 
         </div>
 
+
         <button
           class="btn btn-outline"
-          onclick="toggleCompare('${h.id}')"
-        >
-          ${isCompared(h.id)
+          onclick="toggleCompare('${h.id}')">
+
+          ${
+            isCompared(h.id)
             ? "✓ تمت الإضافة للمقارنة"
-            : "⚖️ إضافة للمقارنة"}
+            : "⚖️ إضافة للمقارنة"
+          }
+
         </button>
 
       </div>
@@ -2602,27 +3130,60 @@ function renderDetails(id){
         <div class="detail-grid">
 
           <div class="detail-item">
-            <strong>الموقع</strong>
-            <span>${h.location}</span>
-          </div>
 
-          <div class="detail-item">
-            <strong>المسافة من الحرم</strong>
-            <span>${distanceText(h.distance)}</span>
-          </div>
+            <strong>
+              الموقع
+            </strong>
 
-          <div class="detail-item">
-            <strong>المواصلات</strong>
             <span>
-              ${h.transport
-                ? "🚌 يوجد نقل للحرم"
-                : "لا يوجد نقل مسجل"}
+              ${h.location}
             </span>
+
           </div>
 
+
           <div class="detail-item">
-            <strong>التصنيف</strong>
-            <span>${starsHTML(h.stars)}</span>
+
+            <strong>
+              المسافة من الحرم
+            </strong>
+
+            <span>
+              ${distanceText(h.distance)}
+            </span>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <strong>
+              المواصلات
+            </strong>
+
+            <span>
+
+              ${
+                h.transport
+                ? "🚌 يوجد نقل للحرم"
+                : "لا يوجد نقل مسجل"
+              }
+
+            </span>
+
+          </div>
+
+
+          <div class="detail-item">
+
+            <strong>
+              التصنيف
+            </strong>
+
+            <span>
+              ${starsHTML(h.stars)}
+            </span>
+
           </div>
 
         </div>
@@ -2630,7 +3191,9 @@ function renderDetails(id){
 
         <div style="margin-top:25px">
 
-          <h3>🛏️ أنواع الغرف</h3>
+          <h3>
+            🛏️ أنواع الغرف
+          </h3>
 
           <div class="rooms">
             ${rooms}
@@ -2641,7 +3204,9 @@ function renderDetails(id){
 
         <div style="margin-top:25px">
 
-          <h3>✨ الخدمات</h3>
+          <h3>
+            ✨ الخدمات
+          </h3>
 
           <div class="amenities">
             ${amenities}
@@ -2654,23 +3219,28 @@ function renderDetails(id){
 
           <button
             class="btn btn-dark"
-            onclick="openMap('${h.id}')"
-          >
+            onclick="openMap('${h.id}')">
+
             📍 فتح الموقع على خرائط جوجل
+
           </button>
+
 
           <button
             class="btn btn-primary"
-            onclick="hotelWhatsApp('${h.id}')"
-          >
+            onclick="hotelWhatsApp('${h.id}')">
+
             💬 تواصل عبر واتساب
+
           </button>
+
 
           <button
             class="btn btn-outline"
-            onclick="go('hotels')"
-          >
+            onclick="go('hotels')">
+
             🏨 كل الفنادق
+
           </button>
 
         </div>
@@ -2778,11 +3348,13 @@ function renderMaps(){
 
         </div>
 
+
         <button
           class="btn btn-outline"
-          onclick="openMap('${h.id}')"
-        >
+          onclick="openMap('${h.id}')">
+
           فتح على الخريطة
+
         </button>
 
       </div>
@@ -2843,7 +3415,9 @@ function toggleCompare(id){
 
     if(list.length >= 3){
 
-      alert("يمكنك اختيار 3 فنادق فقط للمقارنة.");
+      alert(
+        "يمكنك اختيار 3 فنادق فقط للمقارنة."
+      );
 
       return;
 
@@ -2886,7 +3460,12 @@ function renderCompareBar(){
   const status =
     document.getElementById("compareStatus");
 
-  if(!bar || !container || !button || !status){
+  if(
+    !bar ||
+    !container ||
+    !button ||
+    !status
+  ){
     return;
   }
 
@@ -2896,6 +3475,7 @@ function renderCompareBar(){
   if(!list.length){
 
     bar.classList.remove("show");
+
     return;
 
   }
@@ -2914,10 +3494,15 @@ function renderCompareBar(){
 
         <div class="selected-chip">
 
-          <span>${h.name}</span>
+          <span>
+            ${h.name}
+          </span>
 
-          <button onclick="toggleCompare('${h.id}')">
+          <button
+            onclick="toggleCompare('${h.id}')">
+
             ×
+
           </button>
 
         </div>
@@ -2930,12 +3515,14 @@ function renderCompareBar(){
   if(list.length >= 2){
 
     button.disabled = false;
+
     status.textContent =
       `${list.length} فنادق جاهزة للمقارنة`;
 
   }else{
 
     button.disabled = true;
+
     status.textContent =
       "اختار فندقًا آخر للمقارنة";
 
@@ -2951,7 +3538,9 @@ function openComparison(){
 
   if(list.length < 2){
 
-    alert("اختار فندقين على الأقل للمقارنة.");
+    alert(
+      "اختار فندقين على الأقل للمقارنة."
+    );
 
     return;
 
@@ -2980,7 +3569,9 @@ function renderComparePage(){
 
       <div class="empty">
 
-        <strong>المقارنة محتاجة فندقين على الأقل</strong>
+        <strong>
+          المقارنة محتاجة فندقين على الأقل
+        </strong>
 
         اختار فندقين أو ثلاثة من صفحة الفنادق،
         وبعدها اضغط «عرض المقارنة».
@@ -2989,9 +3580,10 @@ function renderComparePage(){
 
         <button
           class="btn btn-primary"
-          onclick="go('hotels')"
-        >
+          onclick="go('hotels')">
+
           🏨 اختيار الفنادق
+
         </button>
 
       </div>
@@ -3019,85 +3611,168 @@ function renderComparePage(){
 
           <tr>
 
-            <th>المعلومة</th>
+            <th>
+              المعلومة
+            </th>
 
-            ${selected.map(h =>
-              `<th>${h.name}</th>`
-            ).join("")}
+            ${
+              selected.map(h =>
+                `<th>${h.name}</th>`
+              ).join("")
+            }
 
           </tr>
 
         </thead>
 
+
         <tbody>
 
-          <tr>
-            <td>التصنيف</td>
-            ${selected.map(h =>
-              `<td>${starsHTML(h.stars)}</td>`
-            ).join("")}
-          </tr>
 
           <tr>
-            <td>الموقع</td>
-            ${selected.map(h =>
-              `<td>${h.location}</td>`
-            ).join("")}
+
+            <td>
+              التصنيف
+            </td>
+
+            ${
+              selected.map(h =>
+                `<td>
+                  ${starsHTML(h.stars)}
+                </td>`
+              ).join("")
+            }
+
           </tr>
+
 
           <tr>
-            <td>المسافة من الحرم</td>
-            ${selected.map(h =>
-              `<td>${distanceText(h.distance)}</td>`
-            ).join("")}
+
+            <td>
+              الموقع
+            </td>
+
+            ${
+              selected.map(h =>
+                `<td>
+                  ${h.location}
+                </td>`
+              ).join("")
+            }
+
           </tr>
+
 
           <tr>
-            <td>المواصلات</td>
-            ${selected.map(h =>
-              `<td>${h.transport ? "✓ يوجد" : "✕ غير مسجل"}</td>`
-            ).join("")}
+
+            <td>
+              المسافة من الحرم
+            </td>
+
+            ${
+              selected.map(h =>
+                `<td>
+                  ${distanceText(h.distance)}
+                </td>`
+              ).join("")
+            }
+
           </tr>
+
 
           <tr>
-            <td>الغرف</td>
-            ${selected.map(h =>
-              `<td>${h.rooms.map(r=>roomNames[r]).join("، ")}</td>`
-            ).join("")}
+
+            <td>
+              المواصلات
+            </td>
+
+            ${
+              selected.map(h =>
+                `<td>
+                  ${
+                    h.transport
+                    ? "✓ يوجد"
+                    : "✕ غير مسجل"
+                  }
+                </td>`
+              ).join("")
+            }
+
           </tr>
+
 
           <tr>
-            <td>الخدمات</td>
-            ${selected.map(h =>
-              `<td>
-                ${
-                  h.amenities.length
-                  ? h.amenities.map(a=>amenityNames[a]).join(" · ")
-                  : "غير مسجلة"
-                }
-              </td>`
-            ).join("")}
+
+            <td>
+              الغرف
+            </td>
+
+            ${
+              selected.map(h =>
+                `<td>
+                  ${
+                    h.rooms
+                      .map(r=>roomNames[r])
+                      .join("، ")
+                  }
+                </td>`
+              ).join("")
+            }
+
           </tr>
+
 
           <tr>
-            <td>التفاصيل</td>
 
-            ${selected.map(h => `
+            <td>
+              الخدمات
+            </td>
 
-              <td>
+            ${
+              selected.map(h =>
+                `<td>
 
-                <button
-                  class="btn btn-primary"
-                  onclick="go('details','${h.id}')"
-                >
-                  التفاصيل
-                </button>
+                  ${
+                    h.amenities.length
+                    ? h.amenities
+                        .map(a=>amenityNames[a])
+                        .join(" · ")
+                    : "غير مسجلة"
+                  }
 
-              </td>
-
-            `).join("")}
+                </td>`
+              ).join("")
+            }
 
           </tr>
+
+
+          <tr>
+
+            <td>
+              التفاصيل
+            </td>
+
+            ${
+              selected.map(h => `
+
+                <td>
+
+                  <button
+                    class="btn btn-primary"
+                    onclick="go('details','${h.id}')">
+
+                    التفاصيل
+
+                  </button>
+
+                </td>
+
+              `).join("")
+            }
+
+          </tr>
+
 
         </tbody>
 
@@ -3156,20 +3831,29 @@ function renderRatings(){
 
       <div class="rating-card">
 
-        <h3>${h.name}</h3>
+        <h3>
+          ${h.name}
+        </h3>
 
         <div class="rating-stars">
-          ${h.stars
-            ? "★".repeat(h.stars) + "☆".repeat(5-h.stars)
-            : "—"}
+
+          ${
+            h.stars
+            ? "★".repeat(h.stars) +
+              "☆".repeat(5-h.stars)
+            : "—"
+          }
+
         </div>
 
         <p>
+
           ${
             h.stars
             ? `${h.stars} نجوم`
             : "التصنيف غير محدد"
           }
+
         </p>
 
       </div>
