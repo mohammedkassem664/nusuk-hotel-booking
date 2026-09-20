@@ -7,6 +7,7 @@
 <title>NUSUK HOTEL BOOKING</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -20,26 +21,22 @@ body{
     line-height:1.8;
 }
 
+/* ================= HEADER ================= */
+
 header{
     background:linear-gradient(135deg,#171717,#343434);
     color:white;
-    padding:25px 18px;
+    padding:20px 15px 25px;
     text-align:center;
     box-shadow:0 3px 15px rgba(0,0,0,.15);
 }
 
- .cover-image{
-    width:100%;
-    max-height:220px;
-    object-fit:cover;
-    border-radius:18px;
-    margin-bottom:15px;
-    display:block;
-}   
+/* شعار الشركة */
+
 .logo-placeholder{
     width:95px;
     height:95px;
-    margin:0 auto 12px;
+    margin:0 auto 15px;
     border-radius:22px;
     background-color:#fff;
     background-image:url('IMG-20260828-WA0029.jpg');
@@ -52,6 +49,21 @@ header{
     overflow:hidden;
 }
 
+/* صورة الغلاف */
+
+.cover-image{
+    width:100%;
+    max-width:900px;
+    height:220px;
+    object-fit:cover;
+    object-position:center;
+    border-radius:18px;
+    margin:0 auto 16px;
+    display:block;
+}
+
+/* اسم الموقع */
+
 header h1{
     font-size:25px;
     margin-bottom:5px;
@@ -62,11 +74,33 @@ header p{
     font-size:14px;
 }
 
+/* بيانات التواصل */
+
+.contact-header{
+    margin-top:12px;
+    font-size:14px;
+    color:#fff;
+}
+
+.contact-header .name{
+    font-size:17px;
+    font-weight:bold;
+    margin-bottom:3px;
+}
+
+.contact-header .phone{
+    color:#ddd;
+}
+
+/* ================= MAIN ================= */
+
 .container{
     width:92%;
     max-width:900px;
     margin:25px auto;
 }
+
+/* الترحيب */
 
 .welcome{
     background:white;
@@ -86,6 +120,8 @@ header p{
     color:#666;
     font-size:14px;
 }
+
+/* الأزرار الرئيسية */
 
 .main-buttons{
     display:grid;
@@ -115,6 +151,8 @@ header p{
     font-size:32px;
     margin-bottom:7px;
 }
+
+/* ================= HOTEL LIST ================= */
 
 .section-title{
     text-align:center;
@@ -160,6 +198,7 @@ header p{
     justify-content:center;
     color:#888;
     font-size:13px;
+    text-align:center;
 }
 
 .hotel-info{
@@ -180,6 +219,8 @@ header p{
     color:#c99700;
     font-size:13px;
 }
+
+/* ================= HOTEL DETAILS ================= */
 
 .detail-page{
     display:none;
@@ -227,6 +268,7 @@ header p{
     justify-content:center;
     align-items:center;
     color:#888;
+    text-align:center;
 }
 
 .detail-content{
@@ -269,6 +311,8 @@ header p{
     font-weight:bold;
 }
 
+/* ================= FOOTER ================= */
+
 footer{
     text-align:center;
     padding:30px 15px;
@@ -276,7 +320,14 @@ footer{
     font-size:13px;
 }
 
+/* ================= MOBILE ================= */
+
 @media(max-width:600px){
+
+    .cover-image{
+        height:180px;
+    }
+
     .hotels-grid{
         grid-template-columns:1fr;
     }
@@ -288,32 +339,58 @@ footer{
     .hotel-image{
         height:175px;
     }
+
+    header h1{
+        font-size:22px;
+    }
+
 }
+
+/* ================= HOTELS DATA ================= */
+
 </style>
 </head>
 
 <body>
 
 <header>
-    <div class="logo-placeholder">
-        شعار<br>NUSUK<br>HOTEL BOOKING
-    </div>
+
+    <div class="logo-placeholder"></div>
+
+    <img
+        src="file_0000000035dc820caee9fa52357bb9d4.png"
+        class="cover-image"
+        alt="NUSUK HOTEL BOOKING"
+    >
 
     <h1>NUSUK HOTEL BOOKING</h1>
+
     <p>حجوزات فنادق مكة والمدينة</p>
+
+    <div class="contact-header">
+        <div class="name">mohammed kassem</div>
+        <div class="phone">📞 01032321748</div>
+    </div>
+
 </header>
+
 
 <main class="container">
 
     <!-- الصفحة الرئيسية -->
+
     <section id="homePage">
 
         <div class="welcome">
+
             <h2>اختار الفندق المناسب لك 🕋</h2>
+
             <p>
                 تصفح الفنادق وشوف الموقع والمميزات والغرف ووسائل النقل
             </p>
+
         </div>
+
 
         <div class="main-buttons">
 
@@ -322,15 +399,18 @@ footer{
                 الفنادق
             </button>
 
+
             <button class="main-btn" onclick="showHotels()">
                 <span>🕋</span>
                 الفنادق القريبة من الحرم
             </button>
 
+
             <button class="main-btn" onclick="showHotels()">
                 <span>⭐</span>
                 تصنيف الفنادق
             </button>
+
 
             <button class="main-btn" onclick="showHotels()">
                 <span>🚌</span>
@@ -343,16 +423,24 @@ footer{
 
 
     <!-- قائمة الفنادق -->
+
     <section id="hotelsPage" style="display:none">
 
         <button class="back-btn" onclick="goHome()">
             ← العودة للرئيسية
         </button>
 
+
         <div class="section-title">
+
             <h2>🏨 فنادقنا</h2>
-            <p>اختار الفندق لمشاهدة التفاصيل</p>
+
+            <p>
+                اختار الفندق لمشاهدة التفاصيل
+            </p>
+
         </div>
+
 
         <input
             type="text"
@@ -362,17 +450,29 @@ footer{
             oninput="searchHotels()"
         >
 
-        <div id="hotelsGrid" class="hotels-grid"></div>
+
+        <div
+            id="hotelsGrid"
+            class="hotels-grid"
+        ></div>
 
     </section>
 
 
     <!-- صفحة تفاصيل الفندق -->
-    <section id="detailPage" class="detail-page">
 
-        <button class="back-btn" onclick="showHotels()">
+    <section
+        id="detailPage"
+        class="detail-page"
+    >
+
+        <button
+            class="back-btn"
+            onclick="showHotels()"
+        >
             ← العودة للفنادق
         </button>
+
 
         <div id="hotelDetails"></div>
 
@@ -382,9 +482,13 @@ footer{
 
 
 <footer>
+
     <div>mohammed kassem</div>
+
     <div>📞 01032321748</div>
+
     <div>© NUSUK HOTEL BOOKING</div>
+
 </footer>
 
 
@@ -744,6 +848,8 @@ const hotels = [
 ];
 
 
+/* ================= FUNCTIONS ================= */
+
 function starsHTML(stars){
 
     if(!stars){
@@ -754,10 +860,14 @@ function starsHTML(stars){
 }
 
 
+/* عرض الفنادق */
+
 function showHotels(){
 
     document.getElementById("homePage").style.display="none";
+
     document.getElementById("detailPage").style.display="none";
+
     document.getElementById("hotelsPage").style.display="block";
 
     renderHotels(hotels);
@@ -769,10 +879,14 @@ function showHotels(){
 }
 
 
+/* العودة للرئيسية */
+
 function goHome(){
 
     document.getElementById("hotelsPage").style.display="none";
+
     document.getElementById("detailPage").style.display="none";
+
     document.getElementById("homePage").style.display="block";
 
     window.scrollTo({
@@ -782,11 +896,14 @@ function goHome(){
 }
 
 
+/* عرض قائمة الفنادق */
+
 function renderHotels(list){
 
     const grid=document.getElementById("hotelsGrid");
 
     grid.innerHTML="";
+
 
     if(list.length===0){
 
@@ -808,22 +925,33 @@ function renderHotels(list){
 
         card.onclick=()=>showHotel(hotel.id);
 
+
         card.innerHTML=`
 
             <div class="hotel-image">
+
                 صورة الفندق<br>
                 نضيفها لاحقًا 📸
+
             </div>
+
 
             <div class="hotel-info">
 
-                <h3>${hotel.name}</h3>
+                <h3>
+                    ${hotel.name}
+                </h3>
+
 
                 <div class="stars">
                     ${starsHTML(hotel.stars)}
                 </div>
 
-                <p>📍 ${hotel.location}</p>
+
+                <p>
+                    📍 ${hotel.location}
+                </p>
+
 
                 ${
                     hotel.distance
@@ -832,7 +960,9 @@ function renderHotels(list){
                 }
 
             </div>
+
         `;
+
 
         grid.appendChild(card);
 
@@ -840,6 +970,8 @@ function renderHotels(list){
 
 }
 
+
+/* البحث */
 
 function searchHotels(){
 
@@ -849,24 +981,34 @@ function searchHotels(){
         .trim()
         .toLowerCase();
 
+
     const filtered=
         hotels.filter(hotel=>
-            hotel.name.toLowerCase().includes(value)
+            hotel.name
+            .toLowerCase()
+            .includes(value)
         );
+
 
     renderHotels(filtered);
 }
 
+
+/* تفاصيل الفندق */
 
 function showHotel(id){
 
     const hotel=
         hotels.find(h=>h.id===id);
 
+
     if(!hotel) return;
 
+
     document.getElementById("homePage").style.display="none";
+
     document.getElementById("hotelsPage").style.display="none";
+
     document.getElementById("detailPage").style.display="block";
 
 
@@ -888,43 +1030,57 @@ function showHotel(id){
     if(hotel.distance){
 
         detailsHTML+=`
-            <li>🕋 <strong>المسافة عن الحرم:</strong>
-            ${hotel.distance}</li>
+            <li>
+                🕋 <strong>المسافة عن الحرم:</strong>
+                ${hotel.distance}
+            </li>
         `;
+
     }
 
 
     if(hotel.walk){
 
         detailsHTML+=`
-            <li>🚶 <strong>المشي للحرم:</strong>
-            ${hotel.walk}</li>
+            <li>
+                🚶 <strong>المشي للحرم:</strong>
+                ${hotel.walk}
+            </li>
         `;
+
     }
 
 
     if(hotel.rooms){
 
         detailsHTML+=`
-            <li>🛏️ <strong>الغرف:</strong>
-            ${hotel.rooms}</li>
+            <li>
+                🛏️ <strong>الغرف:</strong>
+                ${hotel.rooms}
+            </li>
         `;
+
     }
 
 
     if(hotel.transport){
 
         detailsHTML+=`
-            <li>🚌 <strong>المواصلات:</strong>
-            ${hotel.transport}</li>
+            <li>
+                🚌 <strong>المواصلات:</strong>
+                ${hotel.transport}
+            </li>
         `;
+
     }
 
 
     hotel.features.forEach(feature=>{
 
         detailsHTML+=`
-            <li>✓ ${feature}</li>
+            <li>
+                ✓ ${feature}
+            </li>
         `;
 
     });
@@ -934,13 +1090,18 @@ function showHotel(id){
 
         <div class="detail-card">
 
+
             <div class="detail-location">
 
-                <strong>📍 موقع الفندق</strong>
+                <strong>
+                    📍 موقع الفندق
+                </strong>
+
 
                 <div>
                     ${hotel.location}
                 </div>
+
 
                 <a
                     href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(hotel.name+" "+hotel.location+" مكة المكرمة")}"
@@ -962,14 +1123,20 @@ function showHotel(id){
 
             <div class="detail-content">
 
-                <h1>${hotel.name}</h1>
+                <h1>
+                    ${hotel.name}
+                </h1>
+
 
                 <div class="stars">
                     ${stars}
                 </div>
 
 
-                <h2>📋 معلومات الفندق</h2>
+                <h2>
+                    📋 معلومات الفندق
+                </h2>
+
 
                 <ul class="info-list">
 
